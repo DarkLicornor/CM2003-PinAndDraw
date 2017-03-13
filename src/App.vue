@@ -2,28 +2,51 @@
   <div id="app" style="height:100vh;">
     <HeaderBar></HeaderBar>
      <router-view class="view"></router-view>
-    <Board></Board>
+    <!-- <FooterBar></FooterBar> -->
   </div>
 </template>
 
 <script>
   import HeaderBar from './components/HeaderBar.vue'
-  import Board from './components/Board.vue'
+  import FooterBar from './components/FooterBar.vue'
 
   export default {
     name: 'comp',
     components: {
       HeaderBar,
-      Board
+      FooterBar
     }
   }
 </script>
 
 <style>
+  @font-face {
+      font-family: "Panama";
+      src: url("./fonts/Panama/Panama-Light.otf");
+  }
+  @font-face {
+      font-family: "Saigonese";
+      src: url("./fonts/Saigonese.otf");
+  }
+  @font-face {
+      font-family: "Sunday";
+      src: url("./fonts/sunday.otf");
+  }
   body {
-    font-family: Helvetica, sans-serif;
+    font-family: Panama, Helvetica, sans-serif;
   }
   .router-link-active{
-    color: red ;
+    border-bottom: 2px solid #ff0043 !important;
   }
+
+	ul {
+		list-style-type: none;
+  }
+
+	a {
+	text-decoration: none !important;
+	color: white;
+	}
+
+  textarea, input { outline: none; }
 </style>
