@@ -28,43 +28,6 @@
     },
 
     mounted: function() {
-
-      // var start = function () {
-      //     // storing original coordinates
-      //     this.ox = this.attr("cx");
-      //     this.oy = this.attr("cy");
-      //     this.attr({opacity: 1});
-      // },
-
-      // const start = function() {
-      //   this.attr({opacity: 1});
-      // }
-
-      // const move = function(dx, dy) {
-      //   dragPin(this.pinid, {dx, dy})
-      // }
-
-      // const up = function() {
-      //   // restoring state
-      //   console.log('up')
-      //   this.attr({opacity: .5});
-      // };
-
-      // let child = this.$refs.pinsvg
-      // console.log(child)
-      // child.drag(move, start, up);
     }
   }
-
-
-
-
-// var start = function () {
-//     // storing original coordinates
-//     this.ox = this.attr("cx");
-//     this.oy = this.attr("cy");
-//     this.attr({opacity: 1});
-// },
-
-
 </script>
