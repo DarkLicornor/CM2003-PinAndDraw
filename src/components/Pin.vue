@@ -1,0 +1,70 @@
+<template>
+  <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="pinid" ref="pinsvg">
+    <rect x="0" y="0" width="100%" height="100%" rx="3" ry="3"/>
+    <text x="0" y="20" font-family="sans-serif" font-size="20px" fill="red">{{ title }}</text>
+    <image x="0" y="25" width="100%" height="100%" :xlink:href="img"/>
+  </svg>
+</template>
+
+<script>
+  import { mapGetters, mapActions } from 'vuex'
+
+  export default {
+    props: ['pinid', 'title', 'x', 'y', 'img', 'ratio', 'width', 'height'],
+
+    computed: {
+      cWidth() {
+        return this.width * this.ratio
+      },
+      cHeight() {
+        return this.height * this.ratio
+      },
+    },
+
+    methods: {
+      ...mapActions([
+        'dragPin',
+      ])
+    },
+
+    mounted: function() {
+
+      // var start = function () {
+      //     // storing original coordinates
+      //     this.ox = this.attr("cx");
+      //     this.oy = this.attr("cy");
+      //     this.attr({opacity: 1});
+      // },
+
+      // const start = function() {
+      //   this.attr({opacity: 1});
+      // }
+
+      // const move = function(dx, dy) {
+      //   dragPin(this.pinid, {dx, dy})
+      // }
+
+      // const up = function() {
+      //   // restoring state
+      //   console.log('up')
+      //   this.attr({opacity: .5});
+      // };
+
+      // let child = this.$refs.pinsvg
+      // console.log(child)
+      // child.drag(move, start, up);
+    }
+  }
+
+
+
+
+// var start = function () {
+//     // storing original coordinates
+//     this.ox = this.attr("cx");
+//     this.oy = this.attr("cy");
+//     this.attr({opacity: 1});
+// },
+
+
+</script>
