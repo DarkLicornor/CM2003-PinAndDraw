@@ -22,15 +22,15 @@
 <style>
   @font-face {
       font-family: "Panama";
-      src: url("./fonts/Panama/Panama-Light.otf");
+      src: url("./assets/fonts/Panama/Panama-Light.otf");
   }
   @font-face {
       font-family: "Saigonese";
-      src: url("./fonts/Saigonese.otf");
+      src: url("./assets/fonts/Saigonese.otf");
   }
   @font-face {
       font-family: "Sunday";
-      src: url("./fonts/sunday.otf");
+      src: url("./assets/fonts/sunday.otf");
   }
   body {
     font-family: Panama, Helvetica, sans-serif;

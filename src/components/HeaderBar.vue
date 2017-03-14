@@ -1,5 +1,6 @@
 <template>
 	<div class="headerBar">
+		<img src="../assets/images/logo-500.png" alt="logo">
      <ul class="menu">
        <li class="menuHeader"><router-link to="/board">MY BOARD</router-link></li>
        <li class="menuHeader"><router-link to="/signIn">SIGN IN</router-link></li>
@@ -14,7 +15,16 @@
 	    background: rgb(20, 160, 197);
 			padding: 1em;
 			margin: -1em;
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
   }
+
+	.headerBar img {
+		margin-left: 5em;
+		width: 12%;
+		height: 12%;
+	}
 
 	.menu {
 		display: flex;

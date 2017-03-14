@@ -10,6 +10,7 @@
 
 <style>
    .boardMenu {
+		 margin-top: 2em;
 	    background: white;
   }
 

@@ -7,28 +7,10 @@
         <input class="inputText" type="password" name="pwd" placeholder="Your Password">
       </div>
       <div class="pwd"><input type="checkbox" name="showPwd" value="1">Show password</div>
-      <button @click='increment'>Sign in</button>
+      <button>Sign in</button>
       <a>Forgot password ?</a>
   </div>
 </template>
-
-<script>
-import { mapGetters, mapActions } from 'vuex'
-
-export default {
-  methods: {
-    ...mapActions([
-      'increment',
-      'decrement'
-    ])
-  },
-  computed: {
-    ...mapGetters({
-      count: 'getCount'
-    })
-  }
-}
-</script>
 
 <style>
   .signEmail {
@@ -79,7 +61,6 @@ export default {
 .box {
   width: 100%;
   padding: 1em;
-  margin: 1em;
   position:relative;
   color: #fff;
   -webkit-transition:0.5s;

@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<h1 class="boardTitle">My Board</h1>
-		<BoardMenu />
+		<div class="head">
+			<h1 class="boardTitle">My Board</h1>
+			<BoardMenu />
+	</div>
   		<svg :width="svg.width" :height="svg.height" ref="svg">
 
         <Pin v-for="(pin, index) in pins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
@@ -24,12 +26,6 @@
       },
   	}),
 
-    methods: {
-      ...mapActions([
-        'increment',
-        'decrement'
-      ])
-    },
     computed: {
       ...mapGetters({
         pins: 'getPins'
@@ -44,13 +40,18 @@
 </script>
 
 <style>
+	.head {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
 	.boardTitle {
-		background: rgb(20, 160, 197);
-		padding: 1em;
-		padding-left: 2em;
-		margin: -1em;
-		margin-bottom: 0.5em;
-		color: white;
+		background: white;
+		/*padding: 1em;*/
+		padding-left: 1em;
+		/*margin-bottom: 0.5em;*/
+		color: rgb(20, 160, 197);
 		font-size: 3em;
 		font-weight: normal;
 	}
