@@ -1,6 +1,7 @@
 # Pin and Draw
 
 > A Vue.js project with vue 2.0, vue-router and vuex starter kit for server side rendering.
+currently, the images are draggable and resizeable by click on the bottom-right corner.
 
 ## Development Setup
 
