@@ -7443,7 +7443,7 @@ var defaultState = {
     y: 20,
     width: 833,
     height: 958,
-    img: "http://pre07.deviantart.net/ead2/th/pre/i/2015/335/d/3/mad_bomber_by_flotosor-d9intdv.jpg",
+    img: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2F1.bp.blogspot.com%2F-kRnZimNNJsA%2FUBlEl68mn0I%2FAAAAAAAARns%2FyCBKphe6nG4%2Fs1600%2Ffunny-cat-pictures-009-001.jpg&f=1",
     ratio: 1
   }, {
     title: '2',
@@ -7451,21 +7451,21 @@ var defaultState = {
     y: 20,
     width: 300,
     height: 300,
-    img: "http://orig10.deviantart.net/cf43/f/2017/027/4/9/profile_picture_by_flotosor-dawx628.jpg",
+    img: "https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FmW3S0u8bj58%2Fmaxresdefault.jpg&f=1",
     ratio: 1
   }, {
     x: 20,
     y: 600,
     width: 833,
     height: 958,
-    img: "http://pre07.deviantart.net/ead2/th/pre/i/2015/335/d/3/mad_bomber_by_flotosor-d9intdv.jpg",
+    img: "https://images.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.STP1XITH9uoxv3yGhdcsWAEsDg%26pid%3D15.1&f=1",
     ratio: 1
   }, {
     x: 500,
     y: 500,
     width: 833,
     height: 958,
-    img: "http://pre07.deviantart.net/ead2/th/pre/i/2015/335/d/3/mad_bomber_by_flotosor-d9intdv.jpg",
+    img: "https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.dumpaday.com%2Fwp-content%2Fuploads%2F2012%2F10%2Ffunny-cats-1.jpg&f=1",
     ratio: 1
   }]
 };
