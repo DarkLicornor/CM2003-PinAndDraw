@@ -34,25 +34,3 @@ Component displaying a board wich contain pins
     },
   }
 </script>
-
-<style>
-	.head {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-start;
-	}
-	.boardTitle {
-		background: white;
-		/*padding: 1em;*/
-		padding-left: 1em;
-		/*margin-bottom: 0.5em;*/
-		color: rgb(20, 160, 197);
-		font-size: 3em;
-		font-weight: normal;
-	}
-  .resize-container {
-    width: 100%;
-    height: 240px;
-  }
-</style>
