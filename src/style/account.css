@@ -1,0 +1,39 @@
+.account {
+	width: 70%;
+	margin: auto;
+	text-align: center;
+  margin-top: 3em;
+
+}
+
+.account a {
+	background-color: rgb(20, 160, 197);
+	padding: 1em;
+	cursor: pointer;
+}
+
+.account a:hover {
+	background-color: #08627a;
+}
+.account h2 {
+  padding: 1em;
+	margin: 1em;
+}
+
+.listBoards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.miniBoard {
+	margin: 1em;
+	width: 20em;
+	height: 20em;
+	background-color: rgb(20, 160, 197);
+	cursor: pointer;
+}
+
+.miniBoard:hover {
+	background-color: #fff133;
+}

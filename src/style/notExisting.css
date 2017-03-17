@@ -1,0 +1,12 @@
+.errorNotFound {
+		background-color: rgb(20, 160, 197);
+		text-align: center;
+		color: white;
+		font-size: 3.2em;
+		padding: 2em;
+		margin: -2em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+}

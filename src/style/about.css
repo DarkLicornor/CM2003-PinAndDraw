@@ -1,0 +1,11 @@
+.aboutText {
+  width: 50%;
+  margin: auto;
+  padding: 2em;
+  text-align: center;
+}
+
+.aboutText p {
+  font-family: Panama, Helvetica, sans-serif;
+  text-align: justify;
+}

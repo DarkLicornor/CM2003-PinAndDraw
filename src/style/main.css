@@ -1,0 +1,39 @@
+/*We import all the components style in one big file main.css*/
+@import url("./sign.css");
+@import url("./about.css");
+@import url("./board.css");
+@import url("./boardMenu.css");
+@import url("./footer.css");
+@import url("./header.css");
+@import url("./account.css");
+@import url("./notExisting.css");
+
+@font-face {
+    font-family: "Panama";
+    src: url("../assets/fonts/Panama/Panama-Light.otf");
+}
+@font-face {
+    font-family: "Saigonese";
+    src: url("../assets/fonts/Saigonese.otf");
+}
+@font-face {
+    font-family: "Sunday";
+    src: url("../assets/fonts/sunday.otf");
+}
+body {
+  font-family: Panama, Helvetica, sans-serif;
+}
+.router-link-active{
+  border-bottom: 2px solid #ff0043 !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+text-decoration: none !important;
+color: white;
+}
+
+textarea, input { outline: none; }
