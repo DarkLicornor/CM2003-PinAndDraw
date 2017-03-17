@@ -2,22 +2,16 @@
 
 > A Vue.js project with vue 2.0, vue-router and vuex starter kit for server side rendering.
 
-[![Build Status](https://travis-ci.org/doabit/vue-ssr-starter-kit.svg?branch=master)](https://travis-ci.org/doabit/vue-ssr-starter-kit)
-
-## Build Setup
-
-``` bash
-npm install
-npm run build
-npm start
-```
-
 ## Development Setup
 
 ```bash
 npm install
 npm run dev
 ```
+Then go to localhost:3000
+## Styles
+Styles are located in src/styles
+There is one css document per component, and we import them all in main.css
 
 ## Reference resources
 
