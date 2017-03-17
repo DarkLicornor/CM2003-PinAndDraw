@@ -1,3 +1,7 @@
+<!--
+Component managing the Signin of an already registered user
+ -->
+
 <template>
   <div class="signEmail">
       <div class="foo box">

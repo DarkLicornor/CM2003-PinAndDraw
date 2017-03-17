@@ -1,3 +1,7 @@
+<!--
+Component Display the header of the web-App, with navigation menu.
+ -->
+
 <template>
 	<div class="headerBar">
 		<img src="../assets/images/logo-500.png" alt="logo">

@@ -9,7 +9,6 @@ const defaultState = {
   topics: [],
   pins: [
   {
-    title: 'teest long title',
     x: 20,
     y: 20,
     width: 833,
@@ -24,6 +23,22 @@ const defaultState = {
     width: 300,
     height: 300,
     img: "http://orig10.deviantart.net/cf43/f/2017/027/4/9/profile_picture_by_flotosor-dawx628.jpg",
+    ratio: 1
+  },
+  {
+    x: 20,
+    y: 600,
+    width: 833,
+    height: 958,
+    img: "http://pre07.deviantart.net/ead2/th/pre/i/2015/335/d/3/mad_bomber_by_flotosor-d9intdv.jpg",
+    ratio: 1
+  },
+  {
+    x: 500,
+    y: 500,
+    width: 833,
+    height: 958,
+    img: "http://pre07.deviantart.net/ead2/th/pre/i/2015/335/d/3/mad_bomber_by_flotosor-d9intdv.jpg",
     ratio: 1
   }]
 }
