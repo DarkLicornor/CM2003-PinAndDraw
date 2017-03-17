@@ -1,8 +1,7 @@
 <template>
   <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="pinid" ref="pinsvg">
     <rect x="0" y="0" width="100%" height="100%" rx="3" ry="3"/>
-    <text x="0" y="20" font-family="sans-serif" font-size="20px" fill="red">{{ title }}</text>
-    <image x="0" y="25" width="100%" height="100%" :xlink:href="img"/>
+    <image x="0" y="0" width="100%" height="100%" :xlink:href="img"/>
   </svg>
 </template>
 

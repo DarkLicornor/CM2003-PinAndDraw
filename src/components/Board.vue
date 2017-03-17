@@ -9,7 +9,6 @@
         <Pin v-for="(pin, index) in pins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
 
       </svg>
-      <div v-for="pin in pins">{{pin.img}}</div>
 	</div>
 </template>
 
