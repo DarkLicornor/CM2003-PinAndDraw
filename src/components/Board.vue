@@ -9,9 +9,7 @@ Component displaying a board wich contain pins
 			<BoardMenu />
   	</div>
   	<div class="resize-container">
-
       <Pin v-for="(pin, index) in pins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
-
     </div>
   </div>
 </template>

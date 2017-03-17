@@ -100,7 +100,7 @@ The drag and resize is temporary and is currently not stored on the flux State
         });
 
     function dragMoveListener (event) {
-      
+
 
         //if(moved){
           var target = event.target,
@@ -118,7 +118,7 @@ The drag and resize is temporary and is currently not stored on the flux State
       target.style.transform =
         'translate(' + x + 'px, ' + y + 'px)';
 
-      // update the posiion attributes
+      // update the position attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
     }

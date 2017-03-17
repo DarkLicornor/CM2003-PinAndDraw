@@ -1,3 +1,4 @@
+<!-- Component displaying the footer. Not in use for instance -->
 <template>
 	<div class="footerBar">
 		<h4>Alexa NOËL - Florian PEYRON - Jean-Gabriel FISHBACH</h4>

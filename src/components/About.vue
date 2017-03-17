@@ -1,3 +1,4 @@
+<!-- Component displaying the "About us" page -->
 <template>
   <div class="aboutText">
     <h1>Bacon ipsum sit ammet</h1>

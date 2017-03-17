@@ -1,3 +1,4 @@
+<!-- Initial component including the header and the router content -->
 <template>
   <div id="app" style="height:100vh;">
     <HeaderBar></HeaderBar>

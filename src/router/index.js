@@ -1,3 +1,4 @@
+// The router create a path for every component
 import Vue from 'vue'
 import About from '../components/About.vue'
 import Board from '../components/Board.vue'

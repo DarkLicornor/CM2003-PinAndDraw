@@ -1,3 +1,5 @@
+<!-- Component that allow the user to see his board 
+and manage his account -->
 <template>
 	<div class="account">
 			<h1>My Account</h1>
