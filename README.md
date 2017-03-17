@@ -10,7 +10,8 @@ npm run dev
 ```
 Then go to localhost:3000
 ## Styles
-> Styles are located in src/styles
+> Styles are located in src/styles.
+
 > There is one css document per component, and we import them all in main.css
 
 ## Reference resources
