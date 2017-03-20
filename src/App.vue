@@ -15,11 +15,9 @@
     name: 'comp',
     components: {
       HeaderBar,
-      FooterBar
+      FooterBar,
     }
   }
 </script>
-
-
   <style src="./style/main.css">
-  </style>
+</style>

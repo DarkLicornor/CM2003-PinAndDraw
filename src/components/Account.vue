@@ -1,7 +1,9 @@
-<!-- Component that allow the user to see his board 
+<!-- Component that allow the user to see his board
 and manage his account -->
 <template>
 	<div class="account">
+			<div> {{users}} </div>
+			<button @click="push">Click me!</button>
 			<h1>My Account</h1>
 			<h2>Password</h2>
 				<div>
@@ -18,3 +20,23 @@ and manage his account -->
 
 	</div>
 </template>
+
+<script>
+import { mapGetters} from 'vuex'
+export default {
+	computed: {
+    ...mapGetters([
+      'users',
+			'getFirebaseRefUsers'
+    ]),
+  },
+  methods:{
+		push() {
+			this.getFirebaseRefUsers.push({
+			  text: 'hello'
+			})
+		}
+	},
+}
+
+</script>

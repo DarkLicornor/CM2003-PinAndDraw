@@ -1,11 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexFire from 'vuexfire'
 import * as actions from './actions'
 import * as getters from './getters'
+import * as mutations from './mutations'
 
 Vue.use(Vuex)
+Vue.use(VuexFire)
 
 const defaultState = {
+  firebaseRefUsers: "",
+  firebaseApp: "",
+  users: null,
   topics: [],
   pins: [
   {
@@ -48,29 +54,12 @@ const inBrowser = typeof window !== 'undefined'
 // if in browser, use pre-fetched state injected by SSR
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 
-const mutations = {
-  PINS_LIST: (state, topics) => {
-    state.topics = topics
-  },
-
-  INCREMENT: (state) => {
-    state.count++
-  },
-
-  DECREMENT: (state) => {
-    state.count--
-  },
-
-  DRAG: (state, pinId, coordinates) => {
-    stage.pin[pinId].x += coordinates.x
-    stage.pin[pinId].y += coordinates.y
-
-  }
-}
-
 export default new Vuex.Store({
   state,
   actions,
-  mutations,
-  getters
+  getters,
+  mutations: {
+    ...VuexFire.mutations,
+    ...mutations
+  }
 })
