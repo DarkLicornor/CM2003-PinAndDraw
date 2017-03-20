@@ -2,8 +2,8 @@
 and manage his account -->
 <template>
 	<div class="account">
-			<div> {{users}} </div>
-			<button @click="push">Click me!</button>
+			<!-- <div> {{users}} </div>
+			<button @click="push">Click me!</button> -->
 			<h1>My Account</h1>
 			<h2>Password</h2>
 				<div>
