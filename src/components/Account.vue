@@ -27,12 +27,13 @@ export default {
 	computed: {
     ...mapGetters([
       'users',
-			'getFirebaseRefUsers'
+			'getFirebaseDB',
+			'currentUser'
     ]),
   },
   methods:{
 		push() {
-			this.getFirebaseRefUsers.push({
+			this.getFirebaseDB.push({
 			  text: 'hello'
 			})
 		}

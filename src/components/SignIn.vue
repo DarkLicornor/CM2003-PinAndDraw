@@ -16,40 +16,49 @@ Component managing the Signin of an already registered user
       <div class="pwd"><input type="checkbox" name="showPwd" value="1">Show password</div>
       <button @click="signin">Sign in</button>
       <a>Forgot password ?</a>
-
-      <p> email is : {{email}}, pwd is : {{pwd}}</p>
+      <p> {{error}} </p>
   </div>
 </template>
 
 <script>
-import { mapGetters} from 'vuex'
+import { mapGetters, mapActions} from 'vuex'
 
 export default {
   computed: {
     ...mapGetters([
       'users',
-			'getFirebaseRefUsers',
-      'getFirebaseApp'
+			'getFirebaseDB',
+      'getFirebaseAuth'
     ]),
   },
   data: function() {
     return {
         email: '',
-        pwd: ''
+        pwd: '',
+        error: ''
     }
   },
   mounted: function(){
     console.log("this", this)
   },
   methods: {
+    ...mapActions([
+      'setCurrentUser'
+    ]),
     signin() {
-      this.getFirebaseApp.signInWithEmailAndPassword(this.email, this.pwd).catch(function(error) {
-        // Handle Errors here.
-        console.log("marche pas",error.message)
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
-      });
+      let context = this
+      this.getFirebaseAuth.signInWithEmailAndPassword(this.email, this.pwd)
+      .then(function() {
+        context.getFirebaseDB.ref('users').push({
+          email: context.email,
+          uid: context.getFirebaseAuth.currentUser.uid,
+          boards: []
+        })
+        context.$router.push('/board')
+      })
+      .catch(function(err) {
+        context.error = err.message
+      })
     }
   }
 }

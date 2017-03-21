@@ -9,17 +9,17 @@ const firebase = require('firebase')
 
 var config = {
    apiKey: "AIzaSyCT1m8IuiG2gtUxwtCN0w_PU2BJpWnhvsI",
-  //  authDomain: "pinanddraw.firebaseapp.com",
+   authDomain: "pinanddraw.firebaseapp.com",
    databaseURL: "https://pinanddraw.firebaseio.com",
-  //  storageBucket: "pinanddraw.appspot.com",
-  //  messagingSenderId: "686544491404"
+   storageBucket: "pinanddraw.appspot.com",
+   messagingSenderId: "686544491404"
  };
 var firebaseApp = firebase.initializeApp(config);
 var db = firebaseApp.database()
 sync(store, router)
 
-store.commit('SETFIREBASEREFUSERS', db.ref('users'))
-store.commit('SETFIREBASEAPP', firebase.auth())
+store.commit('SETFIREBASEDB', db)
+store.commit('SETFIREBASEAUTH', firebase.auth())
 
 const app = new Vue({
   el: '#app',
@@ -27,12 +27,6 @@ const app = new Vue({
   store,
   firebase: {
     users: db.ref('users')
-  },
-  methods: {
-    ...mapActions([
-      'setFirebaseRefUsers',
-      'setFirebaseApp'
-    ])
   },
   ...App
 })

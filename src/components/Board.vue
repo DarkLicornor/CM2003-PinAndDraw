@@ -1,5 +1,5 @@
 <!--
-Component displaying a board wich contain pins
+Component displaying a board wich contain getPins
  -->
 
 <template>
@@ -9,7 +9,7 @@ Component displaying a board wich contain pins
 			<BoardMenu />
   	</div>
   	<div class="resize-container">
-      <Pin v-for="(pin, index) in pins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
+      <Pin v-for="(pin, index) in getPins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
     </div>
   </div>
 </template>
@@ -21,11 +21,11 @@ Component displaying a board wich contain pins
 
 	export default {
     computed: {
-      ...mapGetters({
-        pins: 'getPins'
-      })
+      ...mapGetters([
+				'currentUser',
+      	'getPins',
+      ])
     },
-
     components: {
       Pin,
 			BoardMenu

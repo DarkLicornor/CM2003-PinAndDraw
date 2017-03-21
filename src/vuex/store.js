@@ -9,7 +9,8 @@ Vue.use(Vuex)
 Vue.use(VuexFire)
 
 const defaultState = {
-  firebaseRefUsers: "",
+  currentUser: null,
+  firebaseDB: "",
   firebaseApp: "",
   users: null,
   topics: [],
