@@ -10,7 +10,7 @@ Production website : http://pinanddraw.azurewebsites.net/board
 
 You can currently :
 - Signin / Signup thanks to firebase
-- Adjust image size and move them thanks to interact.js
+- Adjust image size and move them thanks to interact.js (Drag by clicking anywhere, resize by click on bottom-right corner)
 
 Ongoing :
 - Add image from pinterest
