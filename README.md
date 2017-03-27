@@ -1,6 +1,18 @@
 # pinanddraw-nossr
 
 > A Vue.js project
+Production website : http://pinanddraw.azurewebsites.net/board
+
+You can currently :
+- Signin / Signup thanks to firebase
+- Adjust image size and move them thanks to interact.js
+
+Ongoing :
+- Add image from pinterest
+
+TODO :
+- Add image from facebook / Instagram
+- Change image display method to SVG?
 
 ## Build Setup
 
@@ -18,4 +30,3 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
