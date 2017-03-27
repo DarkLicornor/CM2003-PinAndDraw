@@ -1,6 +1,8 @@
-# pinanddraw-nossr
+# Pin and Draw
 
-> A Vue.js project
+> Pin all the references pictures you need for drawing
+> Pin all the mockups, wireframe and color-palettes you need for your (Web-)application
+> All of that in an intuitive page, with a learning curve as low as possible
 Production website : http://pinanddraw.azurewebsites.net/board
 
 You can currently :
