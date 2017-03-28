@@ -4,6 +4,9 @@ Component displaying a board wich contain getPins
 
 <template>
 	<div>
+    <div v-if="isAddPopupOpen">
+      AddPopupOpen
+    </div>
 		<div class="head">
 			<h1 class="boardTitle">My Board</h1>
 			<BoardMenu />
@@ -24,6 +27,7 @@ Component displaying a board wich contain getPins
       ...mapGetters([
 				'currentUser',
       	'getPins',
+        'isAddPopupOpen'
       ])
     },
     components: {

@@ -7,6 +7,7 @@ import SignUp from '../components/SignUp.vue'
 import Account from '../components/Account.vue'
 import NotExisting from '../components/NotExisting.vue'
 import VueRouter from 'vue-router'
+import PinterestSelector from '../components/Selectors/PinterestSelector.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,7 @@ const router = new VueRouter({
     { path: '/about', component: About },
     { path: '/404', component: NotExisting },
     { path: '/', redirect: '/board' },
+    { path: '/pinterestSelector', component: PinterestSelector },
     { path: '*', redirect: '/404' }
   ]
 })

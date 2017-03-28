@@ -13,7 +13,7 @@ const defaultState = {
   firebaseDB: "",
   firebaseApp: "",
   users: null,
-  topics: [],
+  addPopupOpen: false,
   pins: [
   {
     x: 20,
