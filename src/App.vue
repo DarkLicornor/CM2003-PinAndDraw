@@ -20,18 +20,23 @@
     },
     computed: {
       ...mapGetters([
-        'getFirebaseAuth'
+        'getFirebaseAuth',
+        'getFirebaseDB'
       ])
     },
     methods: {
       ...mapActions([
-        'setCurrentUser'
+        'setAuthCurrentUser',
+        'setDBCurrentUser'
       ]),
     },
     mounted: function() {
       let context = this
       context.getFirebaseAuth.onAuthStateChanged(function(user) {
-        context.setCurrentUser(context.getFirebaseAuth.currentUser)
+        context.setAuthCurrentUser(user)
+        user == null ? null : context.getFirebaseDB.ref('/users/' + user.uid).on('value', (snapshot) => {
+          context.setDBCurrentUser(snapshot.val())
+        })
       })
     },
   }

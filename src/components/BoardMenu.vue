@@ -6,7 +6,7 @@
 		    <a href="#click" class="boardMenu">
 					<img class="boardMenuImage" src="../assets/images/plus.png" alt="logo">
 		      <ul class="boardMenu-dropdown">
-		        <li>Image</li>
+		        <li @click="openPopup">Image</li>
 		        <li>Text</li>
 		        <li>Drawing</li>
 		      </ul>
