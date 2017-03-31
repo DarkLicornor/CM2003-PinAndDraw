@@ -20,7 +20,7 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import Pinterest from '../../util/pinterest';
+  import Pinterest from '../../util/pinterest'
 
   export default {
     data: () => {return {
@@ -54,7 +54,7 @@
         Pinterest.login(this.isLogged)
       },
       isLogged: function(){
-        console.log(Pinterest.loggedIn())
+        console.log('Pinterest.loggedIn()')
         Pinterest.getBoards(this.displayBoards)
       },
       displayBoards: function(nboards){

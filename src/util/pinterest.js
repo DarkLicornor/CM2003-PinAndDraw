@@ -15,6 +15,14 @@ var Pinterest = {
   login: function(callback) {
     PDK.login({ scope : Const.PIN_SCOPE }, callback);
   },
+
+  getSession: function() {
+    return PDK.getSession()
+  }
+
+  setSession: function(session) {
+    PDK.setSession(session)
+  }
   /*
    *  Use the SDK to logout of Pinterest
    */
