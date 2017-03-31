@@ -25,7 +25,7 @@ Component displaying a board wich contain getPins
 	export default {
     computed: {
       ...mapGetters([
-				'currentUser',
+				'authCurrentUser',
       	'getPins',
         'isAddPopupOpen'
       ])

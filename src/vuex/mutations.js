@@ -18,8 +18,12 @@ export const SETFIREBASEAUTH = (state, ref) => {
   state.firebaseApp = ref
 }
 
-export const SETCURRENTUSER = (state, user) => {
-  state.currentUser = user
+export const SETAUTHCURRENTUSER = (state, user) => {
+  state.authCurrentUser = user
+}
+
+export const SETDBCURRENTUSER = (state, user) => {
+  state.DBCurrentUser = user
 }
 
 export const ADDPIN = (state, pin) => {

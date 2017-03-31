@@ -22,13 +22,13 @@ import { mapGetters, mapActions} from 'vuex'
 export default {
   computed: {
     ...mapGetters([
-      'currentUser',
+      'authCurrentUser',
       'getFirebaseAuth'
     ])
   },
 	methods: {
     ...mapActions([
-      'setCurrentUser'
+      'setAuthCurrentUser'
     ]),
 		doLogout() {
 			let context = this
@@ -48,8 +48,8 @@ export default {
     }
   },
 	watch: {
-		currentUser: function(){
-			if(this.currentUser == null) {
+		authCurrentUser: function(){
+			if(this.authCurrentUser == null) {
 				this.signIn = ''
 				this.logout = 'visibility: hidden; width: 0'
 			} else {
