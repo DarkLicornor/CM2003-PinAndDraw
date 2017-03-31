@@ -1,6 +1,23 @@
-# pinanddraw-nossr
+# Pin and Draw
 
-> A Vue.js project
+> Pin all the references pictures you need for drawing
+
+> Pin all the mockups, wireframe and color-palettes you need for your (Web-)application
+
+> All of that in an intuitive page, with a learning curve as low as possible
+
+Production website : http://pinanddraw.azurewebsites.net/board
+
+You can currently :
+- Signin / Signup thanks to firebase
+- Adjust image size and move them thanks to interact.js (Drag by clicking anywhere, resize by click on bottom-right corner)
+
+Ongoing :
+- Add image from pinterest
+
+TODO :
+- Add image from facebook / Instagram
+- Change image display method to SVG?
 
 ## Build Setup
 
@@ -18,4 +35,3 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

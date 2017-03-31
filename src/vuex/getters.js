@@ -5,3 +5,4 @@ export const authCurrentUser = state => state.authCurrentUser
 export const DBCurrentUser = state => state.DBCurrentUser
 export const getFirebaseDB = state => state.firebaseDB
 export const getFirebaseAuth = state => state.firebaseApp
+export const isAddPopupOpen = state => state.addPopupOpen

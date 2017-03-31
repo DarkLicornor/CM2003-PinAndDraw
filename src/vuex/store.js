@@ -15,6 +15,7 @@ const defaultState = {
   users: null,
   DBCurrentUser: null,
   topics: [],
+  addPopupOpen: false,
   pins: [
   {
     x: 20,
