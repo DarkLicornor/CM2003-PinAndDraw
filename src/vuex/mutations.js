@@ -41,3 +41,7 @@ export const ADDPIN = (state, pin) => {
 export const SETADDPOPUPOPEN = (state, isOpen) => {
   state.addPopupOpen = isOpen
 }
+
+export const STORETOKEN = (tokenData) => {
+  state.DBCurrentUser[tokenData.api+'Token'] = tokenData.token
+}

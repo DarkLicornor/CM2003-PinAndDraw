@@ -19,5 +19,9 @@ export const setFirebaseDB = ({ commit }, ref) => commit('SETFIREBASEDB', ref)
 export const setFirebaseAuth = ({ commit }, ref) => commit('SETFIREBASEAUTH', ref)
 export const setAuthCurrentUser = ({ commit }, user) => commit('SETAUTHCURRENTUSER', user)
 export const setDBCurrentUser = ({ commit }, user) => commit('SETDBCURRENTUSER', user)
+
+export const storeToken = ({ commit }, tokenData) => commit('STORETOKEN', api, token)
+
+
 export const addPin = ({ commit }, pin) => commit('ADDPIN', pin)
 export const setAddPopupOpen = ({ commit }, isOpen) => commit('SETADDPOPUPOPEN', isOpen)

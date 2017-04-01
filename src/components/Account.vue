@@ -4,7 +4,7 @@ and manage his account -->
 	<div class="account">
 			<h1>My Account</h1>
 			<h2>Link my accounts</h2>
-				<div v-if="!showGoogle || !showFacebook || !showTwitter">
+				<div v-if="!showGoogle || !showFacebook || !showTwitter || !showPinterest">
 					<p>Connect your account with : </p>
 					<div class="accountLinks">
 						<a v-if="!showGoogle" class="buttonLink" @click="googleLink">
@@ -16,9 +16,12 @@ and manage his account -->
 						<a v-if="!showTwitter" class="buttonLink" @click="twitterLink">
 							<img class="linkAccountImage" src="../assets/images/twitter.png" />
 						</a>
+						<a v-if="!showPinterest" class="buttonLink" @click="pinterestLink">
+							<img class="linkAccountImage" src="../assets/images/twitter.png" />
+						</a>
 					</div>
 				</div>
-				<div v-if="showGoogle || showFacebook || showTwitter">
+				<div v-if="showGoogle || showFacebook || showTwitter || showPinterest">
 					<p> Unlink your account from : </p>
 					<div class="accountLinks">
 						<a v-if="showGoogle" class="buttonLink" @click="googleUnlink">
@@ -28,6 +31,9 @@ and manage his account -->
 							<img class="linkAccountImage" src="../assets/images/facebook.png" />
 						</a>
 						<a v-if="showTwitter" class="buttonLink" @click="twitterUnlink">
+							<img class="linkAccountImage" src="../assets/images/twitter.png" />
+						</a>
+						<a v-if="showPinterest" class="buttonLink" @click="pinterestUnLink">
 							<img class="linkAccountImage" src="../assets/images/twitter.png" />
 						</a>
 					</div>
@@ -47,6 +53,111 @@ and manage his account -->
 	</div>
 </template>
 
+<script>
+	import { mapGetters, mapActions  } from 'vuex'
+	import firebase from 'firebase'
+	import FirebaseAuth from '../util/firebase'
+	import Pinterest from '../util/pinterest'
+
+
+	export default {
+		computed: {
+	    ...mapGetters([
+				'authCurrentUser',
+				'DBCurrentUser',
+				'getFirebaseDB',
+				'getFirebaseAuth',
+	    ])
+	  },
+		data: function() {
+	    return {
+				showGoogle: null,
+				showFacebook: null,
+				showTwitter: null,
+				showPinterest: null,
+			}
+		},
+		watch: {
+			'DBCurrentUser': function(){
+				console.log(this.DBCurrentUser)
+				if(this.DBCurrentUser !== null) {
+					this.showGoogle = this.DBCurrentUser.googleToken ? true : false
+					this.showFacebook = this.DBCurrentUser.facebookToken ? true : false
+					this.showTwitter = this.DBCurrentUser.twitterToken ? true : false
+					this.showPinterest = this.DBCurrentUser.pinterestToken ? true : false
+				}
+			}
+		},
+		mounted: function() {
+			console.log(this.DBCurrentUser)
+			if(this.DBCurrentUser !== null) {
+				this.showGoogle = this.DBCurrentUser.googleToken ? true : false
+				this.showFacebook = this.DBCurrentUser.facebookToken ? true : false
+				this.showTwitter = this.DBCurrentUser.twitterToken ? true : false
+				this.showPinterest = this.DBCurrentUser.pinterestToken ? true : false
+			}
+		},
+		components: {
+			FirebaseAuth,
+			Pinterest,
+		},
+    ...mapActions([
+      'storeToken',
+    ]),
+	  methods: {
+			googleLink() {
+				FirebaseAuth.linkWithProvider({
+					context: this,
+					name: "google",
+					provider: new firebase.auth.GoogleAuthProvider()
+				})
+			},
+			facebookLink() {
+				FirebaseAuth.linkWithProvider({
+					context: this,
+					name: "facebook",
+					provider: new firebase.auth.FacebookAuthProvider()
+				})
+			},
+			twitterLink() {
+				FirebaseAuth.linkWithProvider({
+					context: this,
+					name: "twitter",
+					provider: new firebase.auth.TwitterAuthProvider()
+				})
+			},
+			pinterestLink(){
+				Pinterest.login(() => {
+					this.storeToken({token: Pinterest.getSession(), api:'pinterest'})
+				})
+			},
+			googleUnlink() {
+				FirebaseAuth.unlinkFromProvider({
+					context: this,
+					name: "googleToken",
+					providerId: "google.com"
+				})
+			},
+			facebookUnlink() {
+				FirebaseAuth.unlinkFromProvider({
+					context: this,
+					name: "facebookToken",
+					providerId: "facebook.com"
+				})
+			},
+			twitterUnlink() {
+				FirebaseAuth.unlinkFromProvider({
+					context: this,
+					name: "twitterToken",
+					providerId: "twitter.com"
+				})
+			},
+			pinterestUnLink(){
+				console.log('Pinterest Unlink TODO')
+			},
+		},
+	}
+</script>
 
 <style>
  .accountLinks {
@@ -68,84 +179,3 @@ and manage his account -->
 	 width: 6em;
  }
 </style>
-
-<script>
-import { mapGetters} from 'vuex'
-import firebase from 'firebase'
-import FirebaseAuth from '../util/firebase'
-
-export default {
-	computed: {
-    ...mapGetters([
-			'authCurrentUser',
-			'DBCurrentUser',
-			'getFirebaseDB',
-			'getFirebaseAuth'
-    ]),
-  },
-	watch: {
-		DBCurrentUser: function(){
-			if(this.DBCurrentUser !== null) {
-				this.showGoogle = this.DBCurrentUser.googleToken ? true : false
-				this.showFacebook = this.DBCurrentUser.facebookToken ? true : false
-				this.showTwitter = this.DBCurrentUser.twitterToken ? true : false
-			}
-		}
-	},
-	data: function() {
-	    return {
-				showGoogle: true,
-				showFacebook: true,
-				showTwitter: true
-			}
-	  },
-	mounted: function() {
-	},
-	components: {FirebaseAuth},
-  methods: {
-		googleLink() {
-			FirebaseAuth.linkWithProvider({
-				context: this,
-				name: "google",
-				provider: new firebase.auth.GoogleAuthProvider()
-			})
-		},
-		facebookLink() {
-			FirebaseAuth.linkWithProvider({
-				context: this,
-				name: "facebook",
-				provider: new firebase.auth.FacebookAuthProvider()
-			})
-		},
-		twitterLink() {
-			FirebaseAuth.linkWithProvider({
-				context: this,
-				name: "twitter",
-				provider: new firebase.auth.TwitterAuthProvider()
-			})
-		},
-		googleUnlink() {
-			FirebaseAuth.unlinkFromProvider({
-				context: this,
-				name: "googleToken",
-				providerId: "google.com"
-			})
-		},
-		facebookUnlink() {
-			FirebaseAuth.unlinkFromProvider({
-				context: this,
-				name: "facebookToken",
-				providerId: "facebook.com"
-			})
-		},
-		twitterUnlink() {
-			FirebaseAuth.unlinkFromProvider({
-				context: this,
-				name: "twitterToken",
-				providerId: "twitter.com"
-			})
-		}
-	},
-}
-
-</script>

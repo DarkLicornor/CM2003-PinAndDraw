@@ -8,6 +8,7 @@ import Account from '../components/Account.vue'
 import NotExisting from '../components/NotExisting.vue'
 import VueRouter from 'vue-router'
 import InstagramSelector from '../components/Selectors/InstagramSelector.vue'
+import PinterestSelector from '../components/Selectors/PinterestSelector.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,7 @@ const router = new VueRouter({
     { path: '/signIn', component: SignIn },
     { path: '/about', component: About },
     { path: '/instagramSelector', component: InstagramSelector },
+    { path: '/pinterestSelector', component: PinterestSelector },
     { path: '/404', component: NotExisting },
     { path: '/', redirect: '/board' },
     { path: '*', redirect: '/404' }
