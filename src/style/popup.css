@@ -1,0 +1,78 @@
+
+.popup {
+  width: 50%;
+  background: white;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.popupMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.popupMenu li {
+   font-size: 2em;
+   color: rgb(20, 160, 197) !important;
+   padding: 0em 3em 0.5em 3em;
+   border-bottom: 2px solid #fff133;
+   cursor: pointer;
+ }
+.popupMenu li:hover {
+   border-bottom: 2px solid #ff0043 !important;
+}
+.popupImage {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.popupDragAndDrop {
+  border: dashed 2px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.05);
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  width: 90%;
+}
+
+.popupDragAndDrop img {
+  padding: 1em;
+}
+
+.popupDragAndDrop:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.popup button {
+  border: none;
+  color: white;
+  background: rgb(20, 160, 197);
+  padding: 0.5em;
+  width: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-family: Panama;
+  font-weight: bold;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.popupText {
+  width: 100%;
+}
