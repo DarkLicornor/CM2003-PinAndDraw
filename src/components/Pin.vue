@@ -132,7 +132,7 @@ The drag and resize is temporary and is currently not stored on the flux State
   font-family: sans-serif;
   border-radius: 8px;
   position: absolute;
-
+  z-index: 0;
   width: 120px;
 
   /* This makes things *much* easier */

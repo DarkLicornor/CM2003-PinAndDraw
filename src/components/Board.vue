@@ -4,8 +4,8 @@ Component displaying a board wich contain getPins
 
 <template>
 	<div>
-    <div v-if="isAddPopupOpen">
-      AddPopupOpen
+    <div :style=backgroundStyle v-on:click.self="setAddPopupOpen(false)" v-if="isAddPopupOpen">
+    	<Popup />
     </div>
 		<div class="head">
 			<h1 class="boardTitle">My Board</h1>
@@ -20,7 +20,8 @@ Component displaying a board wich contain getPins
 <script>
   import { mapGetters, mapActions } from 'vuex'
 	import Pin from './Pin.vue'
-  import BoardMenu from './BoardMenu.vue'
+	import BoardMenu from './BoardMenu.vue'
+  import Popup from './Popup.vue'
 
 	export default {
     computed: {
@@ -30,8 +31,30 @@ Component displaying a board wich contain getPins
         'isAddPopupOpen'
       ])
     },
+		methods: {
+			...mapActions([
+				'setAddPopupOpen'
+			])
+		},
+		watch: {
+			isAddPopupOpen: function(){
+				if(this.isAddPopupOpen !== null) {
+					this.backgroundStyle = this.isAddPopupOpen == true
+					? "background: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0; bottom:0; right: 0; display: flex; cursor: pointer;"
+					: ''
+				}
+			}
+		},
+		data: function() {
+			return {
+				backgroundStyle: this.isAddPopupOpen == true
+				? "background: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0; bottom:0; right: 0; display: flex; cursor: pointer;"
+				: ''
+			}
+		},
     components: {
       Pin,
+			Popup,
 			BoardMenu
     },
   }

@@ -3,13 +3,8 @@
 	<div class="boardMenuContainer">
 		<ul class="hList">
 		  <li>
-		    <a href="#click" class="boardMenu">
-					<img class="boardMenuImage" src="../assets/images/plus.png" alt="logo">
-		      <ul class="boardMenu-dropdown">
-		        <li v-on:click="setAddPopupOpen(true)">Image</li>
-		        <li>Text</li>
-		        <li>Drawing</li>
-		      </ul>
+		    <a  v-on:click="setAddPopupOpen(true)" href="#click" class="boardMenu">
+					<img  class="boardMenuImage" src="../assets/images/plus.png" alt="logo">
 		    </a>
 		  </li>
 			<li>
