@@ -20,7 +20,7 @@ export const setFirebaseAuth = ({ commit }, ref) => commit('SETFIREBASEAUTH', re
 export const setAuthCurrentUser = ({ commit }, user) => commit('SETAUTHCURRENTUSER', user)
 export const setDBCurrentUser = ({ commit }, user) => commit('SETDBCURRENTUSER', user)
 
-export const storeToken = ({ commit }, tokenData) => commit('STORETOKEN', api, token)
+export const storeToken = ({ commit }, tokenData) => commit('STORETOKEN', tokenData)
 
 
 export const addPin = ({ commit }, pin) => commit('ADDPIN', pin)

@@ -101,9 +101,6 @@ and manage his account -->
 			FirebaseAuth,
 			Pinterest,
 		},
-    ...mapActions([
-      'storeToken',
-    ]),
 	  methods: {
 			googleLink() {
 				FirebaseAuth.linkWithProvider({
@@ -127,8 +124,9 @@ and manage his account -->
 				})
 			},
 			pinterestLink(){
+				let action = this.storeToken
 				Pinterest.login(() => {
-					this.storeToken({token: Pinterest.getSession(), api:'pinterest'})
+					action({token: Pinterest.getSession(), api:'pinterest'})
 				})
 			},
 			googleUnlink() {
@@ -155,6 +153,9 @@ and manage his account -->
 			pinterestUnLink(){
 				console.log('Pinterest Unlink TODO')
 			},
+	    ...mapActions([
+	      'storeToken',
+	    ]),
 		},
 	}
 </script>

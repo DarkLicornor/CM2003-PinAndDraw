@@ -44,10 +44,8 @@ The drag and resize is temporary and is currently not stored on the flux State
     mounted: function() {
       //Add the "interact.js" listenners for drag and resize events.
 
-
-      // let moved = false
-      // const startX = this.x
-      // const startY = this.y
+      const startX = this.x
+      const startY = this.y
 
       interact('.resize-drag')
         .draggable({
@@ -133,7 +131,7 @@ The drag and resize is temporary and is currently not stored on the flux State
   font-size: 20px;
   font-family: sans-serif;
   border-radius: 8px;
-  /*position: absolute;*/
+  position: absolute;
 
   width: 120px;
 
