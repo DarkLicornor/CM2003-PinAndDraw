@@ -72,11 +72,12 @@ export default {
       if(this.pwd == this.pwd1) {
         this.getFirebaseAuth.createUserWithEmailAndPassword(this.email, this.pwd)
         .then(function() {
-          context.getFirebaseDB.ref('users').push({
+          let updates = {}
+          updates['/users/' + context.getFirebaseAuth.currentUser.uid] = {
             email: context.email,
-            uid: context.getFirebaseAuth.currentUser.uid,
             boards: []
-          })
+          }
+          context.getFirebaseDB.ref().update(updates)
           context.$router.push('/board')
         })
         .catch(function(err) {
