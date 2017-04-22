@@ -13,8 +13,7 @@ const defaultState = {
   firebaseApp: "",
   users: null,
   DBCurrentUser: null,
-  DBCurrentUserVuex: [],
-  pins: [],
+  pins: null,
   addPopupOpen: false,
 }
 

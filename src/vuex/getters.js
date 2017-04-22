@@ -7,8 +7,5 @@ export const getFirebaseDB = state => state.firebaseDB
 export const getFirebaseAuth = state => state.firebaseApp
 export const isAddPopupOpen = state => state.addPopupOpen
 
-
-export const DBCurrentUserVuex = state => state.DBCurrentUserVuex
-
 //debug
 export const getState = state => state

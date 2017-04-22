@@ -5,7 +5,7 @@ The drag and resize is temporary and is currently not stored on the flux State
 
 <template>
 <!-- <img :src="img" class="resize-drag" :style="coordinates"/> -->
-  <img :src="img" class="resize-drag" :style="style"/>
+  <img :src="img" class="resize-drag" :style="style" :data-x="x" :data-y="y" :data-pinid="pinid" :width="width" :height="height"/>
 
   <!-- SVG is not used anymore, but might be used again
   <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="pinid" ref="pinsvg">
@@ -21,31 +21,21 @@ The drag and resize is temporary and is currently not stored on the flux State
   export default {
     components: { interact },
 
-    props: ['pinid', 'title', 'x', 'y', 'img', 'ratio', 'width', 'height'],
+    props: ['pinid', 'title', 'x', 'y', 'img', 'width', 'height'],
 
     computed: {
-      cWidth() {
-        return this.width * this.ratio
-      },
-      cHeight() {
-        return this.height * this.ratio
-      },
       coordinates() {
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
       },
       style() {
-        return "width: "+ this.cWidth +";height: "+ this.cHeight +"; transform: translate("+ this.x +"px, "+ this.y +"px);"
-
-      }
-    },
-
-    methods: {
-      ...mapActions([
-        'dragPin',
+        return "width: "+ this.width +"; height: "+ this.height +"; transform: translate("+ this.x +"px, "+ this.y +"px);"
+      },
+      ...mapGetters([
+        'getFirebaseDB',
       ])
     },
-
     mounted: function() {
+      let context = this
 
       //Add the "interact.js" listenners for drag and resize events.
       interact('.resize-drag')
@@ -56,7 +46,7 @@ The drag and resize is temporary and is currently not stored on the flux State
           restrict: {
             restriction: "parent",
             endOnly: true,
-            elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+            elementRect: { top: 1, left: 1, bottom: 1, right: 1 }
           },
           // enable autoScroll
           autoScroll: true,
@@ -96,11 +86,21 @@ The drag and resize is temporary and is currently not stored on the flux State
           target.setAttribute('data-x', x);
           target.setAttribute('data-y', y);
           target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+
+
+          // update the coordinates on firebase (in case top left corner used)
+          let pinid = target.getAttribute('data-pinid')
+          let updates = {}
+          updates['/pins/'+pinid+'/x/'] = x
+          updates['/pins/'+pinid+'/y/'] = y
+
+          // update the resize on firebase
+          updates['/pins/'+pinid+'/width/'] = event.rect.width
+          updates['/pins/'+pinid+'/height/'] = event.rect.height
+          context.getFirebaseDB.ref().update(updates)
         });
 
     function dragMoveListener (event) {
-
-
         //if(moved){
           var target = event.target,
           // keep the dragged position in the data-x/data-y attributes
@@ -120,9 +120,16 @@ The drag and resize is temporary and is currently not stored on the flux State
       // update the position attributes
       target.setAttribute('data-x', x);
       target.setAttribute('data-y', y);
-    }
+
+      // update the coordinates on firebase
+      let pinid = target.getAttribute('data-pinid')
+      let updates = {}
+      updates['/pins/'+pinid+'/x/'] = x
+      updates['/pins/'+pinid+'/y/'] = y
+      context.getFirebaseDB.ref().update(updates)
     }
   }
+}
 </script>
 
 <style>
@@ -134,7 +141,6 @@ The drag and resize is temporary and is currently not stored on the flux State
   border-radius: 8px;
   position: absolute;
   z-index: 0;
-  width: 120px;
 
   /* This makes things *much* easier */
   box-sizing: border-box;

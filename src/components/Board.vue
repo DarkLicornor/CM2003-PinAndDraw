@@ -12,7 +12,7 @@ Component displaying a board wich contain getPins
 			<BoardMenu />
   	</div>
   	<div class="resize-container">
-      <Pin v-for="(pin, index) in getPins" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :ratio="pin.ratio" :height="pin.height" :width="pin.width"></Pin>
+      <Pin v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
     </div>
   </div>
 </template>
@@ -25,6 +25,15 @@ Component displaying a board wich contain getPins
 
 	export default {
     computed: {
+      pinsList() {
+        let value = this.getPins
+        console.log("pins1", value)
+        delete this.getPins[".key"]
+        console.log("pins2", value)
+        return this.getPins
+        // let value = delete this.getPins['.key']
+        // return value;
+      },
       ...mapGetters([
 				'authCurrentUser',
         'isAddPopupOpen',
@@ -67,3 +76,11 @@ Component displaying a board wich contain getPins
     },
   }
 </script>
+
+<style>
+
+.resize-container {
+  height: 87vh;
+}
+
+</style>
