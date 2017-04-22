@@ -22,12 +22,12 @@ store.commit('SETFIREBASEDB', db)
 store.commit('SETFIREBASEAUTH', firebase.auth())
 
 const app = new Vue({
+  created () {
+    this.$store.dispatch('setPinsRef', db.ref('pins'))
+  },
   el: '#app',
   router,
   store,
-  firebase: {
-    users: db.ref('users')
-  },
   ...App
 })
 

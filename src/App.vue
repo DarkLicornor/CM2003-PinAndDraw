@@ -27,18 +27,20 @@
     methods: {
       ...mapActions([
         'setAuthCurrentUser',
-        'setDBCurrentUser'
+        'setDBCurrentUser',
+        'setDBCurrentUserRef'
       ]),
     },
     mounted: function() {
       let context = this
       context.getFirebaseAuth.onAuthStateChanged(function(user) {
-        console.log('user', user)
         context.setAuthCurrentUser(user)
-        user == null ? null : context.getFirebaseDB.ref('/users/' + user.uid).on('value', (snapshot) => {
-          console.log('val', snapshot.val())
-          context.setDBCurrentUser(snapshot.val())
-        })
+        if(user != null) {
+          // context.getFirebaseDB.ref('/users/' + user.uid).on('value', (snapshot) => {
+          //   context.setDBCurrentUser(snapshot.val())
+          // })
+          context.setDBCurrentUserRef(context.getFirebaseDB.ref('/users/' + user.uid))
+        }
       })
     },
   }

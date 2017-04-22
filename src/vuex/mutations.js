@@ -43,6 +43,5 @@ export const SETADDPOPUPOPEN = (state, isOpen) => {
 }
 
 export const STORETOKEN = (state, tokenData) => {
-  console.log('tokenData', tokenData)
   state.DBCurrentUser[tokenData.api+'Token'] = tokenData.token
 }

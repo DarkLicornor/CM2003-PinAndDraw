@@ -5,7 +5,7 @@ The drag and resize is temporary and is currently not stored on the flux State
 
 <template>
 <!-- <img :src="img" class="resize-drag" :style="coordinates"/> -->
-  <img :src="img" class="resize-drag"/>
+  <img :src="img" class="resize-drag" :style="style"/>
 
   <!-- SVG is not used anymore, but might be used again
   <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="pinid" ref="pinsvg">
@@ -32,6 +32,10 @@ The drag and resize is temporary and is currently not stored on the flux State
       },
       coordinates() {
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
+      },
+      style() {
+        return "width: "+ this.cWidth +";height: "+ this.cHeight +"; transform: translate("+ this.x +"px, "+ this.y +"px);"
+
       }
     },
 
@@ -42,11 +46,8 @@ The drag and resize is temporary and is currently not stored on the flux State
     },
 
     mounted: function() {
+
       //Add the "interact.js" listenners for drag and resize events.
-
-      const startX = this.x
-      const startY = this.y
-
       interact('.resize-drag')
         .draggable({
           // enable inertial throwing
