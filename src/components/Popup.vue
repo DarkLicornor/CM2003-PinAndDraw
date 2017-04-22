@@ -1,31 +1,40 @@
 <template>
   <div class="popup">
-    <ul  class="popupMenu">
-      <li :style=imageSelected v-on:click="setImage(true)">Image</li>
-      <li :style=textSelected v-on:click="setText(true)">Text</li>
-    </ul>
-    <div class="popupImage" v-if="image">
-      <div class="popupImageProviders">
-        <a class="buttonLink" @click="setPinterest">
-          <img class="linkAccountImage" src="../assets/images/pinterest.png" />
-        </a>
+    <div class="popupContainer">
+      <ul  class="popupMenu">
+        <li :style=imageSelected v-on:click="setImage(true)">Image</li>
+        <li :style=textSelected v-on:click="setText(true)">Text</li>
+      </ul>
+      <div class="popupImage" v-if="image">
+        <div class="popupImageProviders">
+          <a class="buttonLink" @click="setPinterest">
+            <img class="linkAccountImage" src="../assets/images/pinterest.png" />
+          </a>
+        </div>
+        <div :style=inputStyle class="foo box">
+          <input class="inputText"
+            type="text"
+            placeholder="Image URL">
+        </div>
+        <DropZone />
+        <!-- <div class="popupDragAndDrop">
+          <img src="../assets/images/upload.png">
+          <p> Just drag and drop your file here </p>
+          <p> or click anywhere to explore </p>
+        </div> -->
       </div>
-      <div :style=inputStyle class="foo box">
-        <input class="inputText"
-          type="text"
-          placeholder="Image URL">
+      <div class="popupPinterest" v-if="pinterest">
+        <PinterestSelector />
       </div>
-      <DropZone />
-      <div class="popupDragAndDrop">
-        <img src="../assets/images/upload.png">
-        <p> Just drag and drop your file here </p>
-        <p> or click anywhere to explore </p>
-      </div>
+      <div class="popupText" v-if="text">
+        <div :style=textAreaDivStyle class="foo box">
+           <textarea :style=textAreaStyle class="inputText"
+             type="text"
+             placeholder="Your text" />
+         </div>
+       </div>
+      <button>Add to board</button>
     </div>
-    <div class="popupPinterest" v-if="pinterest">
-      <PinterestSelector />
-    </div>
-    <button>Add to board</button>
   </div>
 </template>
 
