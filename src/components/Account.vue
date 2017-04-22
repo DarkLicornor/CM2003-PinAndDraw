@@ -34,7 +34,7 @@ and manage his account -->
 						<a v-if="showTwitter" class="buttonLink" @click="twitterUnlink">
 							<img class="linkAccountImage" src="../assets/images/twitter.png" />
 						</a>
-						<a v-if="showPinterest" class="buttonLink" @click="pinterestUnLink">
+						<a v-if="showPinterest" class="buttonLink" @click="pinterestUnlink">
 							<img class="linkAccountImage" src="../assets/images/pinterest.png" />
 						</a>
 					</div>
@@ -68,6 +68,8 @@ and manage his account -->
 				'DBCurrentUser',
 				'getFirebaseDB',
 				'getFirebaseAuth',
+				'DBCurrentUserVuex',
+				'getState',
 	    ])
 	  },
 		data: function() {
@@ -129,9 +131,11 @@ and manage his account -->
 				})
 			},
 			pinterestLink(){
-				let action = this.storeToken
 				Pinterest.login(() => {
-					action({token: Pinterest.getSession(), api:'pinterest'})
+					FirebaseAuth.linkPinterest({
+						context: this,
+						token: Pinterest.getSession().accessToken
+					})
 				})
 			},
 			googleUnlink() {
@@ -155,8 +159,11 @@ and manage his account -->
 					providerId: "twitter.com"
 				})
 			},
-			pinterestUnLink(){
-				console.log('Pinterest Unlink TODO')
+			pinterestUnlink(){
+				FirebaseAuth.unlinkPinterest({
+					context: this
+				})
+				Pinterest.logout()
 			},
 	    ...mapActions([
 	      'storeToken',
