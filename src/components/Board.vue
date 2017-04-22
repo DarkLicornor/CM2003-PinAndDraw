@@ -18,7 +18,7 @@ Component displaying a board wich contain getPins
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters, mapActions, mapState } from 'vuex'
 	import Pin from './Pin.vue'
 	import BoardMenu from './BoardMenu.vue'
   import Popup from './Popup.vue'
@@ -27,9 +27,18 @@ Component displaying a board wich contain getPins
     computed: {
       ...mapGetters([
 				'authCurrentUser',
-      	'getPins',
-        'isAddPopupOpen'
+        'isAddPopupOpen',
+        'getFirebaseAuth',
+        'getFirebaseDB',
+        'getPins',
+        'getState'
       ])
+    },
+    mounted: function() {
+      // this.getFirebaseDB.ref('pins').push({
+      //   x: 5,
+      //   y: 800000,
+      // })
     },
 		methods: {
 			...mapActions([

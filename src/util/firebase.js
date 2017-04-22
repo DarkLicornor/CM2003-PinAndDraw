@@ -1,4 +1,4 @@
-const FirebaseAuth = {
+const FirebaseAuth = { 
   signWithProvider: function(parameters) {
       parameters.context.getFirebaseAuth.signInWithPopup(parameters.provider)
       .then(function(result) {
@@ -74,7 +74,19 @@ const FirebaseAuth = {
     }).catch(function(error) {
       console.log("ERROR UNLINK", error.message)
     });
-  }
+  },
+  linkPinterest: function(parameters){
+      let uid = parameters.context.getFirebaseAuth.currentUser.uid
+      let updates = {}
+      updates['/users/' + uid + '/pinterestToken/' ] = parameters.token
+      parameters.context.getFirebaseDB.ref().update(updates)
+  },
+  unlinkPinterest: function(parameters){
+      let uid = parameters.context.getFirebaseAuth.currentUser.uid
+      let updates = {}
+      updates['/users/' + uid + '/pinterestToken/' ] = null
+      parameters.context.getFirebaseDB.ref().update(updates)
+  },
 }
 
 export default FirebaseAuth
