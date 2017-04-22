@@ -15,6 +15,7 @@
           type="text"
           placeholder="Image URL">
       </div>
+      <DropZone />
       <div class="popupDragAndDrop">
         <img src="../assets/images/upload.png">
         <p> Just drag and drop your file here </p>
@@ -22,20 +23,15 @@
       </div>
     </div>
     <div class="popupPinterest" v-if="pinterest">
-      <p>Select the pin you want to import</p>
-    </div>
-    <div class="popupText" v-if="text">
-      <div :style=textAreaDivStyle class="foo box">
-        <textarea :style=textAreaStyle class="inputText"
-          type="text"
-          placeholder="Your text" />
-      </div>
+      <PinterestSelector />
     </div>
     <button>Add to board</button>
   </div>
 </template>
 
 <script>
+  import DropZone from './DropZone'
+  import PinterestSelector from './Selectors/PinterestSelector'
 	export default {
     methods: {
   		setImage() {
@@ -71,6 +67,10 @@
       textAreaDivStyle: 'height: 20em; width: 80%; margin: auto; margin-top: 2em;margin-bottom: 2em;',
       textAreaStyle: 'height: 100%;'
     }
+  },
+  components: {
+    DropZone,
+    PinterestSelector
   },
 }
 </script>

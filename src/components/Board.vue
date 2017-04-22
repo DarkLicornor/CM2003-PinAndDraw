@@ -31,6 +31,11 @@ Component displaying a board wich contain getPins
         'isAddPopupOpen'
       ])
     },
+		beforeMount: function() {
+			if(this.authCurrentUser === null) {
+					this.$router.push('/signIn')
+				}
+		},
 		methods: {
 			...mapActions([
 				'setAddPopupOpen'

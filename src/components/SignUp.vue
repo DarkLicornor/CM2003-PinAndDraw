@@ -25,13 +25,20 @@ Component managing the Signup of a new user
         <div class="foo box">
           <input v-model="email" class="inputText" type="text" name="email" placeholder="Your Email">
         </div>
-        <div class="foo box">
+        <div v-show="showPass" class="foo box">
+          <input v-model="pwd" class="inputText" type="text" name="pwd" placeholder="Your Password">
+        </div>
+        <div v-show="showPass" class="foo box">
+          <input v-model="pwd1" class="inputText" type="text" name="pwd" placeholder="Confirm your password">
+          </div>
+        <div v-show="!showPass" class="foo box">
           <input v-model="pwd" class="inputText" type="password" name="pwd" placeholder="Your Password">
         </div>
-        <div class="foo box">
+        <div v-show="!showPass" class="foo box">
           <input v-model="pwd1" class="inputText" type="password" name="pwd" placeholder="Confirm your password">
         </div>
-        <div class="pwd"><input type="checkbox" name="showPwd" value="1">Show password</div>
+
+        <div class="pwd"><input type="checkbox" v-model="showPass" >Show password</div>
         <p> {{error}} </p>
         <button @click="signup">Sign up</button>
         <a>Forgot password ?</a>
@@ -51,12 +58,28 @@ export default {
     ...mapGetters([
       'users',
 			'getFirebaseDB',
-      'getFirebaseAuth'
+      'getFirebaseAuth',
+      'authCurrentUser'
     ])
   },
+  watch: {
+    authCurrentUser: function() {
+      console.log('currentUser', this.authCurrentUser)
+        if(this.authCurrentUser !== null) {
+            this.$router.push('/account')
+        }
+      }
+  },
+  mounted: function() {
+    console.log('currentUser', this.authCurrentUser)
+      if(this.authCurrentUser !== null) {
+          this.$router.push('/account')
+      }
+    },
   components: {FirebaseAuth},
   data: function() {
     return {
+        showPass: false,
         email: '',
         pwd: '',
         pwd1: '',

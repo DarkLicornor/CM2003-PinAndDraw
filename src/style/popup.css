@@ -1,6 +1,6 @@
 
 .popup {
-  width: 50%;
+  width: 70%;
   background: white;
   cursor: default;
   display: flex;
@@ -8,9 +8,11 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  z-index: 1;
+  z-index: 100;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
   left: 0;
   top: 0;
   bottom: 0;
@@ -71,6 +73,10 @@
   margin: auto;
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.pinterestPopup button {
+  width: 100%;
 }
 
 .popupText {

@@ -6,7 +6,7 @@ Component Display the header of the web-App, with navigation menu.
 	<div class="headerBar">
 		<img src="../assets/images/logo-500.png" alt="logo">
      <ul class="menu">
-       <li class="menuHeader"><router-link to="/board">My board</router-link></li>
+       <li :style=logout class="menuHeader"><router-link to="/board">My board</router-link></li>
        <li :style=signIn class="menuHeader"><router-link to="/signIn">Sign in</router-link></li>
 			 <li :style=signIn class="menuHeader"><router-link to="/signUp">Sign Up</router-link></li>
 			 <li :style=logout class="menuHeader"><router-link to="/account">My Account</router-link></li>

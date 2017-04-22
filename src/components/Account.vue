@@ -3,6 +3,7 @@ and manage his account -->
 <template>
 	<div class="account">
 			<h1>My Account</h1>
+			<p> {{DBCurrentUser.email}}</p>
 			<h2>Link my accounts</h2>
 				<div v-if="!showGoogle || !showFacebook || !showTwitter || !showPinterest">
 					<p>Connect your account with : </p>
@@ -17,7 +18,7 @@ and manage his account -->
 							<img class="linkAccountImage" src="../assets/images/twitter.png" />
 						</a>
 						<a v-if="!showPinterest" class="buttonLink" @click="pinterestLink">
-							<img class="linkAccountImage" src="../assets/images/twitter.png" />
+							<img class="linkAccountImage" src="../assets/images/pinterest.png" />
 						</a>
 					</div>
 				</div>
@@ -34,7 +35,7 @@ and manage his account -->
 							<img class="linkAccountImage" src="../assets/images/twitter.png" />
 						</a>
 						<a v-if="showPinterest" class="buttonLink" @click="pinterestUnLink">
-							<img class="linkAccountImage" src="../assets/images/twitter.png" />
+							<img class="linkAccountImage" src="../assets/images/pinterest.png" />
 						</a>
 					</div>
 			</div>
@@ -79,13 +80,17 @@ and manage his account -->
 		},
 		watch: {
 			'DBCurrentUser': function(){
-				console.log(this.DBCurrentUser)
 				if(this.DBCurrentUser !== null) {
 					this.showGoogle = this.DBCurrentUser.googleToken ? true : false
 					this.showFacebook = this.DBCurrentUser.facebookToken ? true : false
 					this.showTwitter = this.DBCurrentUser.twitterToken ? true : false
 					this.showPinterest = this.DBCurrentUser.pinterestToken ? true : false
 				}
+			}
+		},
+		beforeMount: function() {
+			if(this.authCurrentUser === null) {
+					this.$router.push('/signIn')
 			}
 		},
 		mounted: function() {

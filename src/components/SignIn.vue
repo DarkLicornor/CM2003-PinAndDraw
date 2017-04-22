@@ -29,10 +29,13 @@ Component managing the Signin of an already registered user
             type="text"
             placeholder="Your Email">
         </div>
-        <div class="foo box">
-          <input class="inputText" type="password" v-model="pwd" placeholder="Your Password">
+        <div v-show="!showPass" class="foo box">
+          <input  class="inputText" type="password" v-model="pwd" placeholder="Your Password">
         </div>
-        <div class="pwd"><input type="checkbox" name="showPwd" value="1">Show password</div>
+        <div v-show="showPass" class="foo box">
+          <input  class="inputText" type="text" v-model="pwd" placeholder="Your Password">
+        </div>
+        <div class="pwd"><input type="checkbox" v-model="showPass" name="showPass">Show password</div>
         <button @click="signin">Sign in</button>
         <a>Forgot password ?</a>
         <p> {{error}} </p>
@@ -51,17 +54,33 @@ export default {
     ...mapGetters([
       'users',
 			'getFirebaseDB',
-      'getFirebaseAuth'
+      'getFirebaseAuth',
+      'authCurrentUser'
     ]),
   },
   data: function() {
     return {
+        showPass: false,
         email: '',
         pwd: '',
         error: '',
         providerError: '',
     }
   },
+  watch: {
+    authCurrentUser: function() {
+      console.log('currentUser', this.authCurrentUser)
+        if(this.authCurrentUser !== null) {
+            this.$router.push('/account')
+        }
+      }
+  },
+  mounted: function() {
+    console.log('currentUser', this.authCurrentUser)
+      if(this.authCurrentUser !== null) {
+          this.$router.push('/account')
+      }
+    },
   components: {FirebaseAuth},
   methods: {
     signin() {
