@@ -46,7 +46,7 @@ The drag and resize is temporary and is currently not stored on the flux State
           restrict: {
             restriction: "parent",
             endOnly: true,
-            elementRect: { top: 1, left: 1, bottom: 1, right: 1 }
+            elementRect: { top: 1, left: 0, bottom: 0, right: 0 }
           },
           // enable autoScroll
           autoScroll: true,
@@ -65,7 +65,7 @@ The drag and resize is temporary and is currently not stored on the flux State
         })
         .resizable({
           preserveAspectRatio: true,
-          edges: { left: false, right: true, bottom: true, top: false }
+          edges: { left: true, right: true, bottom: true, top: true }
         })
         .on('resizemove', function (event) {
           var target = event.target,
