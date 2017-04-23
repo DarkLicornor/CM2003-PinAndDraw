@@ -57,7 +57,7 @@ Component displaying a board wich contain getPins
 			isAddPopupOpen: function(){
 				if(this.isAddPopupOpen !== null) {
 					this.backgroundStyle = this.isAddPopupOpen == true
-					? "background: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0; bottom:0; right: 0; display: flex; cursor: pointer;"
+					? "background: rgba(0,0,0,0.4); position: fixed; z-index: 99; top: 0; left: 0; bottom:0; right: 0; display: flex; cursor: pointer;"
 					: ''
 				}
 			}
