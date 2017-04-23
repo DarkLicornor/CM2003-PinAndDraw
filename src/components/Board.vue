@@ -27,10 +27,8 @@ Component displaying a board wich contain getPins
     computed: {
       pinsList() {
         let value = this.getPins
-        console.log("pins1", value)
-        delete this.getPins[".key"]
-        console.log("pins2", value)
-        return this.getPins
+        delete value[".key"]
+        return value
         // let value = delete this.getPins['.key']
         // return value;
       },
