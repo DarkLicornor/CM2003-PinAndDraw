@@ -6,7 +6,7 @@
 
 > All of that in an intuitive page, with a learning curve as low as possible
 
-Production website : http://pinanddraw.azurewebsites.net/board
+Production website : https://pinanddraw.azurewebsites.net/board
 
 You can currently :
 - Signin / Signup thanks to firebase
