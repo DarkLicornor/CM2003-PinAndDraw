@@ -17,11 +17,7 @@
             placeholder="Image URL">
         </div>
         <DropZone />
-        <!-- <div class="popupDragAndDrop">
-          <img src="../assets/images/upload.png">
-          <p> Just drag and drop your file here </p>
-          <p> or click anywhere to explore </p>
-        </div> -->
+        <button>Add to board</button>
       </div>
       <div class="popupPinterest" v-if="pinterest">
         <PinterestSelector />
@@ -32,8 +28,8 @@
              type="text"
              placeholder="Your text" />
          </div>
+         <button>Add to board</button>
        </div>
-      <button>Add to board</button>
     </div>
   </div>
 </template>

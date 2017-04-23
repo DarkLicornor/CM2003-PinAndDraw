@@ -1,4 +1,4 @@
- 
+
 /*
  *  Container for constants
  */
@@ -11,7 +11,7 @@ module.exports = {
     IG_FEED: 'https://api.instagram.com/v1/users/self/media/recent/?callback=_instaFeed&access_token=',
     IG_COOKIE: 'ig_token',
     PIN_APP: '4890827866886913386',
-    PIN_BOARD_FIELDS: 'id,name,image[small]',
+    PIN_BOARD_FIELDS: 'id,name,image[large]',
     PIN_PIN_FIELDS: 'id,image',
     PIN_SCOPE: 'read_public, write_public'
 };

@@ -1,0 +1,64 @@
+
+.popupBoardsAndPins {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.popupBoard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 1em;
+  border: 2px solid rgba(20, 160, 197, 0.2);
+}
+
+.popupBoard:hover {
+  border: 2px solid rgba(20, 160, 197, 1);
+  background: rgb(20, 160, 197);
+  color: white;
+}
+
+.popupBoardImg {
+  width: 15em;
+  height: 10em;
+  overflow: hidden;
+}
+
+.popupBoardImg img {
+  width: 100%;
+  height: auto;
+}
+.popupBoardsNameSelected {
+  background: rgb(20, 160, 197);
+  color: white;
+}
+
+.popupPins {
+  width: 10em;
+  height: 10em;
+  overflow: hidden;
+  margin: 1em;
+  cursor: pointer;
+  border: 4px solid rgba(20, 160, 197, 0.2);
+}
+
+.popupPins:hover {
+  border: 4px solid rgba(20, 160, 197, 1);
+}
+
+.popupPins img {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+}
+
+.pinSelected {
+  border: 4px solid rgba(20, 160, 197, 1);
+}

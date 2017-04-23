@@ -31,14 +31,12 @@
         'setDBCurrentUserRef'
       ]),
     },
+
     mounted: function() {
       let context = this
       context.getFirebaseAuth.onAuthStateChanged(function(user) {
         context.setAuthCurrentUser(user)
         if(user != null) {
-          // context.getFirebaseDB.ref('/users/' + user.uid).on('value', (snapshot) => {
-          //   context.setDBCurrentUser(snapshot.val())
-          // })
           context.setDBCurrentUserRef(context.getFirebaseDB.ref('/users/' + user.uid))
         }
       })

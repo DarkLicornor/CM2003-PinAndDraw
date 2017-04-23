@@ -3,7 +3,7 @@ and manage his account -->
 <template>
 	<div class="account">
 			<h1>My Account</h1>
-			<p> {{DBCurrentUser.email}}</p>
+			<p v-if="DBCurrentUser != null"> {{DBCurrentUser.email}}</p>
 			<h2>Link my accounts</h2>
 				<div v-if="!showGoogle || !showFacebook || !showTwitter || !showPinterest">
 					<p>Connect your account with : </p>
@@ -134,7 +134,7 @@ and manage his account -->
 				Pinterest.login(() => {
 					FirebaseAuth.linkPinterest({
 						context: this,
-						token: Pinterest.getSession().accessToken
+						token: Pinterest.getSession()
 					})
 				})
 			},

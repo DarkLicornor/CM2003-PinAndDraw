@@ -12,25 +12,25 @@ Component displaying a board wich contain getPins
 			<BoardMenu />
   	</div>
   	<div class="resize-container">
-      <Pin v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
+			<Spinner v-if="pinsList == null" />
+      <Pin v-else v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters, mapActions, mapState } from 'vuex'
-	import Pin from './Pin.vue'
-	import BoardMenu from './BoardMenu.vue'
-  import Popup from './Popup.vue'
+	import Pin from './Pin'
+	import BoardMenu from './BoardMenu'
+  import Popup from './Popup'
+	import Spinner from './Spinner'
 
 	export default {
     computed: {
       pinsList() {
         let value = this.getPins
-        console.log("pins1", value)
-        delete this.getPins[".key"]
-        console.log("pins2", value)
-        return this.getPins
+        delete value[".key"]
+        return value
         // let value = delete this.getPins['.key']
         // return value;
       },
@@ -43,10 +43,11 @@ Component displaying a board wich contain getPins
         'getState'
       ])
     },
-		beforeMount: function() {
+		mounted: function() {
 			if(this.authCurrentUser === null) {
 					this.$router.push('/signIn')
 				}
+				console.log("pinlist0", this.pinsList)
 		},
 		methods: {
 			...mapActions([
@@ -72,7 +73,8 @@ Component displaying a board wich contain getPins
     components: {
       Pin,
 			Popup,
-			BoardMenu
+			BoardMenu,
+			Spinner
     },
   }
 </script>
