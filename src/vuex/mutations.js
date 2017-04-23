@@ -14,6 +14,10 @@ export const SETFIREBASEDB = (state, ref) => {
   state.firebaseDB = ref
 }
 
+export const SETFIREBASESTORAGE = (state, ref) => {
+  state.firebaseStorage = ref
+}
+
 export const SETFIREBASEAUTH = (state, ref) => {
   state.firebaseApp = ref
 }
@@ -45,3 +49,20 @@ export const SETADDPOPUPOPEN = (state, isOpen) => {
 export const STORETOKEN = (state, tokenData) => {
   state.DBCurrentUser[tokenData.api+'Token'] = tokenData.token
 }
+
+export const ADDFILETOUPLOADQUEUE = (state, file) => {
+  state.uploadQueue.push(file)
+}
+
+export const REMOVEFILEFROMUPLOADQUEUE = (state, file) => {
+  let index = state.uploadQueue.indexOf(file)
+  if(index > -1){
+    state.uploadQueue.splice(index, 1)
+  }
+}
+
+export const CLEARUPLOADQUEUE = (state) => {
+  state.uploadQueue = []
+}
+
+

@@ -20,6 +20,7 @@ sync(store, router)
 
 store.commit('SETFIREBASEDB', db)
 store.commit('SETFIREBASEAUTH', firebase.auth())
+store.commit('SETFIREBASESTORAGE', firebase.storage())
 
 const app = new Vue({
   created () {

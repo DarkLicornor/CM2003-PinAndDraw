@@ -9,12 +9,14 @@ Vue.use(Vuex)
 
 const defaultState = {
   authCurrentUser: null,
-  firebaseDB: "",
-  firebaseApp: "",
+  firebaseDB: null,
+  firebaseApp: null,
+  firebaseStorage: null,
   users: null,
   DBCurrentUser: null,
   pins: null,
   addPopupOpen: false,
+  uploadQueue: [],
 }
 
 const inBrowser = typeof window !== 'undefined'
