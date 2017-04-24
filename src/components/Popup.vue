@@ -14,8 +14,10 @@
         <div :style=inputStyle class="foo box">
           <input class="inputText"
             type="text"
-            placeholder="Image URL">
+            placeholder="Image URL"
+            v-model="imageURL">
         </div>
+        <button @click="getImageSize"> Upload </button>
         <DropZone autoProcessQueue="false" ref="dropZoneUpload"/>
 
         <Spinner v-if="uploadingFile == true" />
@@ -44,6 +46,54 @@
 
 	export default {
     methods: {
+      getImageSize() {
+        if(this.imageURL !== "") {
+          let img = new Image()
+          let width
+          let height
+          let callback = this.uploadURL
+          img.onload = function() {
+            img.width = this.width,
+            img.height = this.height
+            callback(img)
+          },
+          img.src = this.imageURL
+        } else {
+          console.log("url invalid", this.imageURL)
+        }
+      },
+      uploadURL(img) {
+          let updates = {}
+          let postData = {}
+          let newWidth = img.width
+          let newHeight = img.height
+          let ratio
+          if(newWidth > 500 || newHeight > 500) {
+            if(newHeight < newWidth){
+              ratio = 500/newWidth
+              newWidth = 500
+              newHeight = newHeight*ratio
+            } else {
+              ratio = 500/newHeight
+              newHeight = 500
+              newWidth = newWidth*ratio
+            }
+          }
+
+          postData = {
+            width : newWidth,
+            height: newHeight,
+            ratio: 1,
+            img: img.src,
+            x: 0,
+            y: 0
+          }
+
+          let newPinKey = this.getFirebaseDB.ref().child('boards/' + this.currentBoard[".key"] + '/pins/').push().key;
+          updates['boards/' + this.currentBoard[".key"] + '/pins/'+ newPinKey] = postData
+          this.getFirebaseDB.ref().update(updates)
+          this.setAddPopupOpen(false)
+      },
   		setImage() {
   			this.image = true
         this.text = false
@@ -114,7 +164,9 @@
         this.$refs.dropZoneUpload.$refs.dropZoneComponent.removeAllFiles()
       },
       ...mapActions([
-        'clearUploadQueue'
+        'clearUploadQueue',
+        'addFileToUploadQueue',
+        'setAddPopupOpen'
       ])
   	},
 
@@ -131,6 +183,7 @@
     },
     data: function() {
       return {
+        imageURL: "",
         uploadingFile: false,
         image: true,
         text: false,
