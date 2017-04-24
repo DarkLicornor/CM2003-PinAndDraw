@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import About from '../components/About.vue'
 import Board from '../components/Board.vue'
+import MyBoards from '../components/MyBoards.vue'
 import SignIn from '../components/SignIn.vue'
 import SignUp from '../components/SignUp.vue'
 import Account from '../components/Account.vue'
@@ -17,6 +18,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     { path: '/board', component: Board },
+    { path: '/boards', component: MyBoards },
     { path: '/account', component: Account },
     { path: '/signUp', component: SignUp },
     { path: '/signIn', component: SignIn },

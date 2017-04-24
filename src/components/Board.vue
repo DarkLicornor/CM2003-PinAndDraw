@@ -28,26 +28,22 @@ Component displaying a board wich contain getPins
 	export default {
     computed: {
       pinsList() {
-        let value = this.getPins
-        delete value[".key"]
-        return value
-        // let value = delete this.getPins['.key']
-        // return value;
+				console.log()
+        return this.currentBoard.pins
       },
       ...mapGetters([
 				'authCurrentUser',
         'isAddPopupOpen',
         'getFirebaseAuth',
         'getFirebaseDB',
-        'getPins',
-        'getState'
+        'getState',
+				'currentBoard'
       ])
     },
 		mounted: function() {
 			if(this.authCurrentUser === null) {
-					this.$router.push('/signIn')
-				}
-				console.log("pinlist0", this.pinsList)
+				this.$router.push('/signIn')
+			}
 		},
 		methods: {
 			...mapActions([

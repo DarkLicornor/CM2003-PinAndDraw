@@ -39,7 +39,8 @@
     computed: {
       ...mapGetters([
         'DBCurrentUser',
-        'getFirebaseDB'
+        'getFirebaseDB',
+        'currentBoard'
       ])
     },
     watch: {
@@ -75,7 +76,6 @@
     },
     methods: {
       ...mapActions([
-        'addPin',
         'setAddPopupOpen'
       ]),
       login: function() {
@@ -136,11 +136,10 @@
             y: 0
           }
 
-          let newPinKey = this.getFirebaseDB.ref().child('pins').push().key;
-          updates['/pins/' +  newPinKey] = postData
+          let newPinKey = this.getFirebaseDB.ref().child('boards/' + this.currentBoard[".key"] + '/pins/').push().key;
+          updates['boards/' + context.currentBoard[".key"] + '/pins/'+ newPinKey] = postData
         })
         this.getFirebaseDB.ref().update(updates)
-        console.log("thiiis", this.$parent.$parent)
         this.setAddPopupOpen(false)
 
       }

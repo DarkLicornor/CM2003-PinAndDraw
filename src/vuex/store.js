@@ -14,7 +14,8 @@ const defaultState = {
   firebaseStorage: null,
   users: null,
   DBCurrentUser: null,
-  pins: null,
+  boards: [],
+  currentBoard: null,
   addPopupOpen: false,
   uploadQueue: [],
 }

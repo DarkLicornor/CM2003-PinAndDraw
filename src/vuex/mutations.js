@@ -30,18 +30,6 @@ export const SETDBCURRENTUSER = (state, user) => {
   state.DBCurrentUser = user
 }
 
-export const ADDPIN = (state, pin) => {
-  state.pins.push({
-    x: 0,
-    y: 0,
-    width: pin.width,
-    height: pin.height,
-    img: pin.url,
-    ratio: 1
-  })
-  state.addPopupOpen = false
-}
-
 export const SETADDPOPUPOPEN = (state, isOpen) => {
   state.addPopupOpen = isOpen
 }
@@ -65,4 +53,6 @@ export const CLEARUPLOADQUEUE = (state) => {
   state.uploadQueue = []
 }
 
-
+export const SETCURRENTBOARD = (state, board) => {
+  state.currentBoard = board
+}

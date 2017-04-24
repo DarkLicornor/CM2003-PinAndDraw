@@ -24,7 +24,7 @@ store.commit('SETFIREBASESTORAGE', firebase.storage())
 
 const app = new Vue({
   created () {
-    this.$store.dispatch('setPinsRef', db.ref('pins'))
+    this.$store.dispatch('setBoardsRef', db.ref('boards'))
   },
   el: '#app',
   router,

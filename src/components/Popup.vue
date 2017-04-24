@@ -96,9 +96,9 @@
             //Upload successful
             console.log('Uploaded a file!');
             context.uploadingFile = false
-            let newPinKey = context.getFirebaseDB.ref().child('pins').push().key
+            let newPinKey = context.getFirebaseDB.ref().child('boards/' + context.currentBoard[".key"] + '/pins').push().key
 
-            updates['/pins/'+newPinKey] = {
+            updates['boards/' + context.currentBoard[".key"] + '/pins/'+ newPinKey] = {
               height: file.height,
               width: file.width,
               img: uploadTask.snapshot.downloadURL,
@@ -122,8 +122,12 @@
       ...mapGetters([
         'getFirebaseDB',
         'getFirebaseStorage',
-        'uploadQueue'
+        'uploadQueue',
+        'currentBoard'
       ])
+    },
+    mounted: function() {
+      console.log('currentBoard', this.currentBoard[".key"])
     },
     data: function() {
       return {

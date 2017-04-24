@@ -32,9 +32,10 @@ The drag and resize is temporary and is currently not stored on the flux State
       },
       ...mapGetters([
         'getFirebaseDB',
+        'currentBoard'
       ])
     },
-    mounted: function() {
+      mounted: function() {
       let context = this
 
       //Add the "interact.js" listenners for drag and resize events.
@@ -91,12 +92,12 @@ The drag and resize is temporary and is currently not stored on the flux State
           // update the coordinates on firebase (in case top left corner used)
           let pinid = target.getAttribute('data-pinid')
           let updates = {}
-          updates['/pins/'+pinid+'/x/'] = x
-          updates['/pins/'+pinid+'/y/'] = y
+          updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/x/'] = x
+          updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/y/'] = y
 
           // update the resize on firebase
-          updates['/pins/'+pinid+'/width/'] = event.rect.width
-          updates['/pins/'+pinid+'/height/'] = event.rect.height
+          updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/width/'] = event.rect.width
+          updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/height/'] = event.rect.height
           context.getFirebaseDB.ref().update(updates)
         });
 
@@ -124,8 +125,8 @@ The drag and resize is temporary and is currently not stored on the flux State
       // update the coordinates on firebase
       let pinid = target.getAttribute('data-pinid')
       let updates = {}
-      updates['/pins/'+pinid+'/x/'] = x
-      updates['/pins/'+pinid+'/y/'] = y
+      updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/x/'] = x
+      updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/y/'] = y
       context.getFirebaseDB.ref().update(updates)
     }
   }

@@ -1,5 +1,6 @@
 export const getTopics = state => state.topics
-export const getPins = state => state.pins
+export const myBoards = state => state.boards
+export const currentBoard = state => state.currentBoard
 export const users = state => state.users
 export const authCurrentUser = state => state.authCurrentUser
 export const DBCurrentUser = state => state.DBCurrentUser

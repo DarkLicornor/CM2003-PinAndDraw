@@ -8,10 +8,12 @@ const setTodosRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { re
   unbindFirebaseRef('todos')
 })
 
-export const setPinsRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
+export const setBoardsRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
   // this will unbind any previously bound ref to 'todos'
-  bindFirebaseRef('pins', ref)
+  bindFirebaseRef('boards', ref)
 })
+
+
 
 export const setDBCurrentUserRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
   // this will unbind any previously bound ref to 'todos'
@@ -27,14 +29,10 @@ export const setFirebaseStorage = ({ commit }, ref) => commit('SETFIREBASESTORAG
 export const setAuthCurrentUser = ({ commit }, user) => commit('SETAUTHCURRENTUSER', user)
 export const setDBCurrentUser = ({ commit }, user) => commit('SETDBCURRENTUSER', user)
 export const storeToken = ({ commit }, tokenData) => commit('STORETOKEN', tokenData)
+export const setCurrentBoard = ({ commit }, board) => commit('SETCURRENTBOARD', board)
 
-export const addPin = ({ commit }, pin) => commit('ADDPIN', pin)
 export const setAddPopupOpen = ({ commit }, isOpen) => commit('SETADDPOPUPOPEN', isOpen)
-
 
 export const addFileToUploadQueue = ({ commit }, file) => commit('ADDFILETOUPLOADQUEUE', file)
 export const removeFileFromUploadQueue = ({ commit }, file) => commit('REMOVEFILEFROMUPLOADQUEUE', file)
 export const clearUploadQueue = ({ commit }) => commit('CLEARUPLOADQUEUE')
-
-
-
