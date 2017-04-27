@@ -8,12 +8,13 @@ Component displaying a board wich contain getPins
     	<Popup />
     </div>
 		<div class="head">
-			<h1 class="boardTitle">My Board</h1>
+			<input v-model="newBoardTitle" type="text" />
 			<BoardMenu />
   	</div>
-  	<div class="resize-container">
-			<Spinner v-if="pinsList == null" />
-      <Pin v-else v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
+  	<div id="boardToCapture" class="resize-container">
+			<p v-if="pinsList == undefined"> Click on "+" to add your first pin, and on your board name to rename it</p>
+			<Pin v-else-if="pinsList !== null" v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
+			<Spinner v-else />
     </div>
   </div>
 </template>
@@ -24,11 +25,12 @@ Component displaying a board wich contain getPins
 	import BoardMenu from './BoardMenu'
   import Popup from './Popup'
 	import Spinner from './Spinner'
+	import html2canvas from 'html2canvas'
 
 	export default {
     computed: {
       pinsList() {
-				console.log()
+				console.log("pins", this.currentBoard.pins)
         return this.currentBoard.pins
       },
       ...mapGetters([
@@ -36,21 +38,67 @@ Component displaying a board wich contain getPins
         'isAddPopupOpen',
         'getFirebaseAuth',
         'getFirebaseDB',
+				'getFirebaseStorage',
         'getState',
 				'currentBoard'
       ])
     },
 		mounted: function() {
+			console.log('currentBoard', this)
 			if(this.authCurrentUser === null) {
 				this.$router.push('/signIn')
 			}
+			this.newBoardTitle = this.currentBoard ? this.currentBoard.title : 'Untitled board'
+			let context = this
+
+			// this.captureScreen = setTimeout(() => {
+	    // 	html2canvas(document.getElementById("boardToCapture"), {
+	    //     onrendered: function (canvas) {
+			// 			let dataURI = canvas.toDataURL()
+			// 			let binary = atob(dataURI.split(',')[1]);
+			// 	    let array = [];
+			// 	    for(let i = 0; i < binary.length; i++) {
+			// 	        array.push(binary.charCodeAt(i));
+			// 	    }
+			// 	    let image = new Blob([new Uint8Array(array)], {type: 'image/png'});
+			//
+			//
+			//         let updates = {}
+			//
+			//           //Upload the image
+			//           let uploadTask = context.getFirebaseStorage.ref().child('screenshot'+context.currentBoard[".key"]+'png').put(image)
+			//
+			//           uploadTask.on('state_changed', function(snapshot){
+			//             //During upload
+			//             context.uploadingFile = true
+			//           }, function(error){
+			//             //On error
+			//             console.log('Upload Error')
+			//           }, function() {
+			//             //Upload successful
+			//             // console.log('Uploaded a file!');
+			//             context.uploadingFile = false
+			// 						// console.log("image", image)
+			// 						updates['boards/' + context.currentBoard[".key"] + '/miniBoard' ] = uploadTask.snapshot.downloadURL
+			// 						// console.log("updates", updates)
+			// 						context.getFirebaseDB.ref().update(updates)
+			//           })
+		  //         },
+	    //     	})
+			// }, 2000)
 		},
 		methods: {
 			...mapActions([
 				'setAddPopupOpen'
-			])
+			]),
 		},
 		watch: {
+			'newBoardTitle': function(val, oldVal) {
+				let updates = {}
+				updates['boards/' + this.currentBoard[".key"] + '/title' ] = val
+				console.log("updates", updates)
+				this.getFirebaseDB.ref().update(updates)
+			},
 			isAddPopupOpen: function(){
 				if(this.isAddPopupOpen !== null) {
 					this.backgroundStyle = this.isAddPopupOpen == true
@@ -61,6 +109,9 @@ Component displaying a board wich contain getPins
 		},
 		data: function() {
 			return {
+				uploadingFile: false,
+				captureScreen: null,
+				newBoardTitle: 'Untitled board',
 				backgroundStyle: this.isAddPopupOpen == true
 				? "background: rgba(0,0,0,0.4); position: absolute; top: 0; left: 0; bottom:0; right: 0; display: flex; cursor: pointer;"
 				: ''
@@ -70,15 +121,8 @@ Component displaying a board wich contain getPins
       Pin,
 			Popup,
 			BoardMenu,
-			Spinner
+			Spinner,
+			html2canvas
     },
   }
 </script>
-
-<style>
-
-.resize-container {
-  height: 87vh;
-}
-
-</style>

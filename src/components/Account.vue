@@ -43,14 +43,6 @@ and manage his account -->
 				<div>
 					<a class="button">Reset my password</a>
 				</div>
-			<h2>My Boards</h2>
-			<div class="listBoards">
-				<div class="miniBoard"> </div>
-				<div class="miniBoard"> </div>
-				<div class="miniBoard"> </div>
-				<div class="miniBoard"> </div>
-				<div class="miniBoard"> </div>
-			</div>
 	</div>
 </template>
 

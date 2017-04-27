@@ -105,7 +105,6 @@
           element.className += " pinSelected"
           this.toAddPins.push(this.pins[index])
         }
-        console.log('toAddPins', this.toAddPins)
       },
       addToBoard: function() {
         let updates = {}
@@ -126,7 +125,6 @@
               newWidth = newWidth*ratio
             }
           }
-          console.log('after change', newWidth, newHeight, ratio)
           postData = {
             width : newWidth,
             height: newHeight,
@@ -137,14 +135,12 @@
           }
 
           let newPinKey = this.getFirebaseDB.ref().child('boards/' + this.currentBoard[".key"] + '/pins/').push().key;
-          updates['boards/' + context.currentBoard[".key"] + '/pins/'+ newPinKey] = postData
+          updates['boards/' + this.currentBoard[".key"] + '/pins/'+ newPinKey] = postData
         })
         this.getFirebaseDB.ref().update(updates)
         this.setAddPopupOpen(false)
-
       }
     }
-
   }
 
 </script>

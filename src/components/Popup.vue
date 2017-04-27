@@ -17,7 +17,7 @@
             placeholder="Image URL"
             v-model="imageURL">
         </div>
-        <button @click="getImageSize"> Upload </button>
+        <!-- <button @click="getImageSize"> Upload </button> -->
         <DropZone autoProcessQueue="false" ref="dropZoneUpload"/>
 
         <Spinner v-if="uploadingFile == true" />

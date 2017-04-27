@@ -26,7 +26,7 @@
   export default {
     methods: {
       ...mapActions([
-        'setAddPopupOpen'
+        'setAddPopupOpen',
       ])
     }
   }

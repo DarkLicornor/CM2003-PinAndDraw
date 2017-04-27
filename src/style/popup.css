@@ -72,6 +72,7 @@
 .popupContainer button {
   border: none;
   color: white;
+  display: block;
   background: rgb(20, 160, 197);
   padding: 0.5em;
   width: 50%;
@@ -84,10 +85,10 @@
   margin-bottom: 1em;
 }
 
-.pinterestPopup button {
-  width: 100%;
-}
-
 .popupText {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

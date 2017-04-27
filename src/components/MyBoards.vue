@@ -2,10 +2,13 @@
 <template>
   <div class="myBoards">
   	<h2>My Boards</h2>
+    <button class="createButton" @click="createBoard">Create a board</button>
+    <p> or select one : </p>
   	<div class="listBoards">
       <Spinner v-if="boardsList == null" />
       <div @click="showBoard(board)" class="miniBoard" v-else v-for="(board, index) in boardsList">
         <p>{{board.title}}</p>
+        <!-- <img src="board.miniBoard.img.src" /> -->
   	</div>
   </div>
 </div>
@@ -19,6 +22,22 @@
   margin-top: 3em;
 }
 
+.myBoards .createButton {
+    padding: 1em;
+    border: none;
+    background: #14a0c5;
+    color: white;
+    font-family: Panama;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.myBoards .createButton:hover {
+	background-color: #08627a;
+}
+
 .myBoards .button {
 	background-color: rgb(20, 160, 197);
 	padding: 1em;
@@ -28,6 +47,7 @@
 .myBoards .button:hover {
 	background-color: #08627a;
 }
+
 .myBoards h2 {
   padding: 1em;
 	margin: 1em;
@@ -84,14 +104,24 @@
       showBoard: function(board) {
         this.setCurrentBoard(board)
         this.$router.push('/board')
+      },
+      createBoard: function() {
+        let updates = {}
+        let newBoardKey = this.getFirebaseDB.ref().child('boards/').push().key;
+        updates['boards/' + newBoardKey] = {title: 'Untitled board'}
+        this.getFirebaseDB.ref().update(updates)
+        this.getFirebaseDB.ref('boards/'+newBoardKey).on('value', (snap) => {
+          this.showBoard(snap.val())
+        })
       }
     },
-    
+
 		data: function() {
 	    return {
 			}
 		},
 		beforeMount: function() {
+      console.log('boards', this.myBoards)
 			if(this.authCurrentUser === null) {
 					this.$router.push('/signIn')
 			}

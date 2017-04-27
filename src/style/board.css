@@ -2,9 +2,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
-.boardTitle {
+
+.head input {
+  border: none;
+  font-family: Panama, Helvetica, sans-serif;
   background: white;
   /*padding: 1em;*/
   padding-left: 1em;
@@ -12,4 +15,13 @@
   color: rgb(20, 160, 197);
   font-size: 3em;
   font-weight: normal;
+}
+
+.resize-container {
+  height: 100vh;
+}
+
+.resize-container p {
+	text-align: center;
+	font-size: 2em;
 }
