@@ -13,6 +13,7 @@
         </div>
       </template>
       <template v-else>
+        <button @click="backToBoards">Back to boards</button>
         <div class="popupBoardsAndPins">
           <Spinner v-if="pins == null" />
           <div v-else class="popupPins" v-for="(pin, index) in pins" v-on:click="clickedPin(index)" :id="'popupPin'+index">
@@ -84,6 +85,9 @@
       isLogged: function(){
         Pinterest.getBoards(this.displayBoards)
       },
+      backToBoards: function() {
+        this.display = 'boards'
+      },
       displayBoards: function(nboards){
         this.boards = nboards.data
         // console.log('BOARDS images2', nboards.data[0].image)
@@ -112,7 +116,6 @@
           let postData = {}
           let newWidth = pin.image.original.width
           let newHeight = pin.image.original.height
-          console.log('before change', newWidth, newHeight)
           let ratio
           if(newWidth > 500 || newHeight > 500) {
             if(newHeight < newWidth){

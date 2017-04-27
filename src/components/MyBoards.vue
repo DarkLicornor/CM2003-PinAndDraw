@@ -8,13 +8,17 @@
       <Spinner v-if="boardsList == null" />
       <div @click="showBoard(board)" class="miniBoard" v-else v-for="(board, index) in boardsList">
         <p>{{board.title}}</p>
-        <!-- <img src="board.miniBoard.img.src" /> -->
+        <img :src="firstPinImage(board)"/>
   	</div>
   </div>
 </div>
 </template>
 
 <style>
+.miniBoard img {
+  width: 100%;
+  margin: auto;
+}
 .myBoards {
 	width: 70%;
 	margin: auto;
@@ -65,10 +69,13 @@
 	height: 20em;
 	background-color: rgb(20, 160, 197);
 	cursor: pointer;
+  overflow: hidden;
+  color: white;
 }
 
 .miniBoard:hover {
 	background-color: #fff133;
+  color: black;
 }
 
 </style>
@@ -113,7 +120,14 @@
         this.getFirebaseDB.ref('boards/'+newBoardKey).on('value', (snap) => {
           this.showBoard(snap.val())
         })
-      }
+      },
+      firstPinImage: function(board) {
+
+        for(let pin in board.pins) {
+          console.log('img', board, pin, board.pins[pin].img)
+          return board.pins[pin].img
+        }
+      },
     },
 
 		data: function() {
@@ -121,7 +135,6 @@
 			}
 		},
 		beforeMount: function() {
-      console.log('boards', this.myBoards)
 			if(this.authCurrentUser === null) {
 					this.$router.push('/signIn')
 			}
