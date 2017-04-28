@@ -53,20 +53,11 @@
 }
 
 .popupDragAndDrop {
-  border: dashed 2px rgba(0,0,0,0.2);
-  background: rgba(0,0,0,0.05);
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  width: 90%;
+
 }
 
 .popupDragAndDrop img {
   padding: 1em;
-}
-
-.popupDragAndDrop:hover {
-  background-color: rgba(0,0,0,0.1);
 }
 
 .popupContainer button {

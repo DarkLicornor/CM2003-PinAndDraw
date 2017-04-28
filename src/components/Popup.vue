@@ -7,21 +7,30 @@
       </ul>
       <div class="popupImage" v-if="image">
         <div class="popupImageProviders">
+          <img class="notAvailable" src="../assets/images/google.png" />
+          <img class="notAvailable" src="../assets/images/instagram.png" />
           <a class="buttonLink" @click="setPinterest">
             <img class="linkAccountImage" src="../assets/images/pinterest.png" />
           </a>
-        </div>
-        <div :style=inputStyle class="foo box">
-          <input class="inputText"
-            type="text"
-            placeholder="Image URL"
-            v-model="imageURL">
-        </div>
-        <!-- <button @click="getImageSize"> Upload </button> -->
-        <DropZone autoProcessQueue="false" ref="dropZoneUpload"/>
+          <img class="notAvailable" src="../assets/images/twitter.png" />
+          <img class="notAvailable" src="../assets/images/pinterest.png" />
 
-        <Spinner v-if="uploadingFile == true" />
-        <button v-else @click="upload">Add to board</button>
+        </div>
+        <div class="popupAddImageUrl">
+          <div :style=inputStyle class="foo box">
+            <input class="inputText"
+              type="text"
+              placeholder="Image URL"
+              v-model="imageURL">
+          </div>
+          <button @click="getImageSize">Add image URL </button>
+        </div>
+        <div class="popupDragAndDrop">
+          <DropZone autoProcessQueue="false" ref="dropZoneUpload"/>
+
+          <Spinner v-if="uploadingFile == true" />
+          <button v-else @click="upload">Add files</button>
+        </div>
       </div>
       <div class="popupPinterest" v-if="pinterest">
         <PinterestSelector />
@@ -37,6 +46,60 @@
     </div>
   </div>
 </template>
+
+<style>
+.popupImageProviders {
+  margin: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  padding: 2em 0 2em 0;
+  width: 80%;
+}
+
+.popupImageProviders .notAvailable {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    width: 5em;
+}
+
+.dropzoneContainer {
+  width: 100%;
+}
+
+.dropzone {
+  border: none!important;
+}
+
+
+.popupAddImageUrl {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  margin: 2em;
+  width: 80%;
+}
+
+.popupDragAndDrop {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  margin: 2em;
+  width: 80%;
+}
+</style>
 
 <script>
   import DropZone from './DropZone'
