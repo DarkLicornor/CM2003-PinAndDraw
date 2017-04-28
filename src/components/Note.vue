@@ -22,7 +22,7 @@ Component displaying one text note, and allowing to drag and resize it
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
       },
       style() {
-        return "width: "+ this.width +"; height: "+ this.height +"; transform: translate("+ this.x +"px, "+ this.y +"px);"
+        return "width: "+ this.width +"; height: "+ this.height +"; " + this.coordinates;
       },
       ...mapGetters([
         'getFirebaseDB',

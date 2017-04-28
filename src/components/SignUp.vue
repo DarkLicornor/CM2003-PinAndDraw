@@ -66,14 +66,14 @@ export default {
     authCurrentUser: function() {
       console.log('currentUser', this.authCurrentUser)
         if(this.authCurrentUser !== null) {
-            this.$router.push('/account')
+            this.$router.push('/boards')
         }
       }
   },
   mounted: function() {
     console.log('currentUser', this.authCurrentUser)
       if(this.authCurrentUser !== null) {
-          this.$router.push('/account')
+          this.$router.push('/boards')
       }
     },
   components: {FirebaseAuth},

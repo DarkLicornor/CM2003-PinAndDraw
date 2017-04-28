@@ -24,7 +24,7 @@ const router = new VueRouter({
     { path: '/about', component: About },
     { path: '/pinterestSelector', component: PinterestSelector },
     { path: '/404', component: NotExisting },
-    { path: '/', redirect: '/board' },
+    { path: '/', redirect: '/boards' },
     { path: '*', redirect: '/404' }
   ]
 })

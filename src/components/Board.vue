@@ -64,6 +64,9 @@ Component displaying a board wich contain pins
 			if(this.authCurrentUser === null) {
 				this.$router.push('/signIn')
 			}
+      if(this.currentBoard == null){
+        this.$router.push('/boards')
+      }
       //Initialise the board name
 			this.newBoardTitle = this.currentBoard ? this.currentBoard.title : 'Untitled board'
 			let context = this

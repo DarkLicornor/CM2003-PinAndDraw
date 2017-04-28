@@ -24,7 +24,7 @@
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
       },
       style() {
-        return "width: "+ this.width +"; height: "+ this.height +"; transform: translate("+ this.x +"px, "+ this.y +"px);"
+        return "width: "+ this.width +"; height: "+ this.height +"; " + this.coordinates;
       },
       ...mapGetters([
         'getFirebaseDB',
@@ -139,19 +139,25 @@
         // feedback the possibility of a drop
         dropzoneElement.classList.add('drop-target');
         draggableElement.classList.add('can-drop');
-        draggableElement.textContent = 'Dragged in';
       },
       ondragleave: function (event) {
         // remove the drop feedback style
         event.target.classList.remove('drop-target');
         event.relatedTarget.classList.remove('can-drop');
-        event.relatedTarget.textContent = 'Dragged out';
       },
       ondrop: function (event) {
-        console.log("dropped")
         let pinid = event.relatedTarget.getAttribute('data-pinid')
-        context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/pins/"+pinid).remove()
-        event.relatedTarget.classList.remove('can-drop');
+        if(pinid == null){
+          //This is a note pin
+          let noteid = event.relatedTarget.getAttribute('data-noteid')
+          context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/notes/"+noteid).remove()
+          event.relatedTarget.classList.remove('can-drop');
+
+        } else {
+          //This is an image pin
+          context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/pins/"+pinid).remove()
+          event.relatedTarget.classList.remove('can-drop');
+        }
       },
       ondropdeactivate: function (event) {
         // remove active dropzone feedback

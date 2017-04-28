@@ -71,7 +71,7 @@ export default {
     //Check is the user is already logged in, if yes redirect him to /account
     authCurrentUser: function() {
         if(this.authCurrentUser !== null) {
-            this.$router.push('/account')
+            this.$router.push('/boards')
         }
       }
   },
@@ -79,7 +79,7 @@ export default {
     //Check is the user is already logged in, if yes redirect him to /account
     //Duplicate code
       if(this.authCurrentUser !== null) {
-          this.$router.push('/account')
+          this.$router.push('/boards')
       }
     },
   components: {FirebaseAuth},
@@ -88,7 +88,7 @@ export default {
       let context = this
       this.getFirebaseAuth.signInWithEmailAndPassword(this.email, this.pwd)
       .then(function() {
-        context.$router.push('/account')
+        context.$router.push('/boards')
       })
     },
     googleSignin() {
