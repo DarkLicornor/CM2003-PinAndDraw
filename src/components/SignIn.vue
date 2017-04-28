@@ -87,7 +87,7 @@ export default {
       let context = this
       this.getFirebaseAuth.signInWithEmailAndPassword(this.email, this.pwd)
       .then(function() {
-        context.$router.push('/board')
+        context.$router.push('/account')
       })
     },
     googleSignin() {
