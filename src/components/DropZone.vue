@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dropzoneContainer">
     <dropzone
       id="myVueDropzone"
       url="https://httpbin.org/post"
