@@ -6,9 +6,9 @@
     <p> or select one : </p>
   	<div class="listBoards">
       <Spinner v-if="boardsList == null" />
-      <div @click="showBoard(board)" class="miniBoard" v-else v-for="(board, index) in boardsList">
-        <p>{{board.title}}</p>
-        <img :src="firstPinImage(board)"/>
+      <div class="miniBoard" v-else v-for="(board, index) in boardsList">
+        <div class="miniBoardHeader"><p @click="showBoard(board)" >{{board.title}}</p><img @click="deleteBoard(board)" src="../assets/images/cancel.png"/></div>
+        <img @click="showBoard(board)" :src="firstPinImage(board)"/>
   	</div>
   </div>
 </div>
@@ -19,7 +19,6 @@
 	import firebase from 'firebase'
 	import FirebaseAuth from '../util/firebase'
 	import Pinterest from '../util/pinterest'
-
 
 	export default {
 		computed: {
@@ -54,6 +53,13 @@
         let updates = {}
         let newBoardKey = this.getFirebaseDB.ref().child('boards/').push().key;
         updates['boards/' + newBoardKey] = {title: 'Untitled board'}
+        this.getFirebaseDB.ref().update(updates)
+        this.router.push('/myboards')
+      },
+      //Delete the selected board
+      deleteBoard: function(board) {
+        let updates = {}
+        updates['boards/' + board[".key"]] = {}
         this.getFirebaseDB.ref().update(updates)
         this.router.push('/myboards')
       },
