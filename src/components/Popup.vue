@@ -116,7 +116,6 @@
         this.textSelected = ''
       },
       upload() {
-        console.log(this.uploadQueue)
         let context = this
 
         let updates = {}
@@ -160,7 +159,7 @@
         }
         //Empty the upload queue
         this.clearUploadQueue()
-        //Empty the thumbnails on the dropZone component
+        //Empty the thumbnails on the dropZone component1
         this.$refs.dropZoneUpload.$refs.dropZoneComponent.removeAllFiles()
       },
       ...mapActions([

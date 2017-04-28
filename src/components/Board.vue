@@ -12,6 +12,7 @@ Component displaying a board wich contain getPins
 			<BoardMenu />
   	</div>
   	<div id="boardToCapture" class="resize-container">
+      <img class="boardMenuDelete" src="../assets/images/plus.png" alt="logo">
 			<p v-if="pinsList == undefined"> Click on "+" to add your first pin, and on your board name to rename it</p>
 			<Pin v-else-if="pinsList !== null" v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
 			<Spinner v-else />

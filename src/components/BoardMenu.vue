@@ -8,14 +8,14 @@
 		    </a>
 		  </li>
 			<li>
-		    <a href="#click" class="boardMenu">
-					<img class="boardMenuImage" src="../assets/images/share.png" alt="logo">
-		      <ul class="boardMenu-dropdown">
-		        <li>Facebook</li>
-		        <li>Twitter</li>
-		        <li>Link</li>
-		      </ul>
-		    </a>
+        <a href="#click" class="boardMenu">
+  				<img class="boardMenuImage" src="../assets/images/share.png" alt="logo">
+  	      <ul class="boardMenu-dropdown">
+  	        <li>Facebook</li>
+  	        <li>Twitter</li>
+  	        <li>Link</li>
+  	      </ul>
+        </a>
 		  </li>
 		</ul>
 	</div>
