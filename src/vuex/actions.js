@@ -4,6 +4,9 @@ import { firebaseAction } from 'vuexfire'
 export const setBoardsRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
   bindFirebaseRef('boards', ref)
 })
+export const setUsersRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
+  bindFirebaseRef('users', ref)
+})
 export const setDBCurrentUserRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
   bindFirebaseRef('DBCurrentUser', ref)
 })

@@ -27,6 +27,7 @@ const app = new Vue({
   created () {
     //Link the firebase boards to the store
     this.$store.dispatch('setBoardsRef', db.ref('boards'))
+    this.$store.dispatch('setUsersRef', db.ref('users'))
   },
   el: '#app',
   router,

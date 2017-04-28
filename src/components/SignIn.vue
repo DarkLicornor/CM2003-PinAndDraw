@@ -81,6 +81,7 @@ export default {
       if(this.authCurrentUser !== null) {
           this.$router.push('/boards')
       }
+      console.log('users', this.users)
     },
   components: {FirebaseAuth},
   methods: {

@@ -13,7 +13,7 @@ const defaultState = {
   firebaseDB: null,
   firebaseApp: null,
   firebaseStorage: null,
-  users: null,
+  users: [],
   DBCurrentUser: null,
   boards: [],
   currentBoard: null,

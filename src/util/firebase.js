@@ -7,8 +7,10 @@ const FirebaseAuth = {
       .then(function(result) {
         let newUser = result.user
         let existing = false
-        parameters.context.users.map((user) => {
-          if(user.uid === newUser.uid) {
+        let users = parameters.context.users
+        delete users[".key"]
+        users.map((user) => {
+          if(user[".key"] === newUser.uid) {
             existing = true
           }
         })
@@ -40,8 +42,8 @@ const FirebaseAuth = {
           updates['/users/' + uid] = postData
           parameters.context.getFirebaseDB.ref().update(updates)
         }
-        //Redirect to /myboards
-        parameters.context.$router.push('/myboards')
+        //Redirect to /boards
+        parameters.context.$router.push('/boards')
       })
       .catch(function(error) {
         console.log("error" + error.message)
@@ -69,7 +71,7 @@ const FirebaseAuth = {
     }).catch(function(error) {
       console.log('ERROR', error.message)
       parameters.context.providerError = error.message
-      
+
     });
   },
   //Unlink an API from the account
@@ -77,7 +79,6 @@ const FirebaseAuth = {
     parameters.context.getFirebaseAuth.currentUser.unlink(parameters.providerId)
     .then(function() {
       let uid = parameters.context.getFirebaseAuth.currentUser.uid
-      console.log('to remove', uid, parameters.name)
       parameters.context.getFirebaseDB.ref('users/'+ uid + "/").child(parameters.name).remove()
       .catch((error) => console.log("error removing", error.message))
     }).catch(function(error) {
