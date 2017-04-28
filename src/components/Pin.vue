@@ -23,6 +23,12 @@ The drag and resize is temporary and is currently not stored on the flux State
 
     props: ['pinid', 'title', 'x', 'y', 'img', 'width', 'height'],
 
+    methods: {
+      ...mapActions([
+        'deletePin'
+      ])
+    },
+
     computed: {
       coordinates() {
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
@@ -47,7 +53,7 @@ The drag and resize is temporary and is currently not stored on the flux State
           restrict: {
             restriction: "parent",
             endOnly: true,
-            elementRect: { top: 1, left: 0, bottom: 0, right: 0 }
+            elementRect: { top: 0, left: 1, bottom: 1, right: 1 }
           },
           // enable autoScroll
           autoScroll: true,
@@ -66,7 +72,7 @@ The drag and resize is temporary and is currently not stored on the flux State
         })
         .resizable({
           preserveAspectRatio: true,
-          edges: { left: true, right: true, bottom: true, top: true }
+          edges: { left: false, right: true, bottom: true, top: false }
         })
         .on('resizemove', function (event) {
           var target = event.target,
@@ -135,6 +141,46 @@ The drag and resize is temporary and is currently not stored on the flux State
         context.getFirebaseDB.ref().update(updates)
       }
     }
+
+    //Handle drag and drop to delete a pin
+    interact('.boardMenuDelete').dropzone({
+      // only accept elements matching this CSS selector
+      accept: '.resize-drag',
+      // Require a 75% element overlap for a drop to be possible
+      overlap: 0.001,
+
+      // listen for drop related events:
+
+      ondropactivate: function (event) {
+        // add active dropzone feedback
+        event.target.classList.add('drop-active');
+      },
+      ondragenter: function (event) {
+        var draggableElement = event.relatedTarget,
+            dropzoneElement = event.target;
+
+        // feedback the possibility of a drop
+        dropzoneElement.classList.add('drop-target');
+        draggableElement.classList.add('can-drop');
+        draggableElement.textContent = 'Dragged in';
+      },
+      ondragleave: function (event) {
+        // remove the drop feedback style
+        event.target.classList.remove('drop-target');
+        event.relatedTarget.classList.remove('can-drop');
+        event.relatedTarget.textContent = 'Dragged out';
+      },
+      ondrop: function (event) {
+        console.log("dropped")
+        let pinid = event.relatedTarget.getAttribute('data-pinid')
+        context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/pins/"+pinid).remove()
+      },
+      ondropdeactivate: function (event) {
+        // remove active dropzone feedback
+        event.target.classList.remove('drop-active');
+        event.target.classList.remove('drop-target');
+      }
+    });
   }
 }
 </script>
@@ -151,5 +197,12 @@ The drag and resize is temporary and is currently not stored on the flux State
 
   /* This makes things *much* easier */
   box-sizing: border-box;
+}
+
+.drop-active {
+  opacity: 1;
+}
+.can-drop {
+  opacity: 0.5;
 }
 </style>

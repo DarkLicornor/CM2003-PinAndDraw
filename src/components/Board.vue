@@ -12,6 +12,7 @@ Component displaying a board wich contain getPins
 			<BoardMenu />
   	</div>
   	<div id="boardToCapture" class="resize-container">
+      <img class="boardMenuDelete" src="../assets/images/recyclebin-icon.png" alt="logo">
 			<p v-if="pinsList == undefined && notesList == undefined"> Click on "+" to add your first pin, and on your board name to rename it</p>
 			<div v-else-if="pinsList !== null || notesList !== null">
 				<Pin v-if="pinsList !== null" v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
@@ -32,6 +33,12 @@ Component displaying a board wich contain getPins
 	import html2canvas from 'html2canvas'
 
 	export default {
+    data: function (){
+      return {
+        pinsList: null,
+        interval: null
+      }
+    },
     computed: {
       ...mapGetters([
 				'authCurrentUser',
@@ -51,6 +58,17 @@ Component displaying a board wich contain getPins
 				return this.currentBoard.pins
 			},
     },
+    // created: function() {
+    //   var self = this
+    //   this.interval = setInterval(function () {
+    //     console.log("updated")
+    //     self.pinsList = self.currentBoard.pins
+    //     self.$forceUpdate()
+    //   }, 1000)
+    // },
+    // beforeDestroy: function() {
+    //   clearInterval(this.interval)
+    // },
 		mounted: function() {
 			if(this.authCurrentUser === null) {
 				this.$router.push('/signIn')
@@ -96,6 +114,10 @@ Component displaying a board wich contain getPins
 			// }, 2000)
 		},
 		methods: {
+      pinsList() {
+        console.log("pins", this.currentBoard.pins)
+        return this.currentBoard.pins
+      },
 			...mapActions([
 				'setAddPopupOpen'
 			]),
