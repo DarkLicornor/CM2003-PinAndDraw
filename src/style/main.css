@@ -3,12 +3,14 @@
 @import url("./about.css");
 @import url("./board.css");
 @import url("./boardMenu.css");
+@import url("./myBoards.css");
 @import url("./footer.css");
 @import url("./header.css");
 @import url("./account.css");
 @import url("./notExisting.css");
 @import url("./popup.css");
 @import url("./pinterestSelector.css");
+@import url("./spinner.css");
 
 @font-face {
     font-family: "Panama";

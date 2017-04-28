@@ -163,24 +163,3 @@ and manage his account -->
 		},
 	}
 </script>
-
-<style>
- .accountLinks {
-	 display: flex;
-	 flex-direction: row;
-	 align-items: center;
-	 justify-content: space-around;
-	 width: 20%;
-	 margin: auto;
- }
-
- .buttonLink {
-	 margin: 1em;
-	 background: white;
-	 cursor: pointer;
- }
-
- .linkAccountImage {
-	 width: 6em;
- }
-</style>

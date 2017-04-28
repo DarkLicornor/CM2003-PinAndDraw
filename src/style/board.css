@@ -26,8 +26,39 @@
 	font-size: 2em;
 }
 
-.resize-drag {
+.resize-dragNote {
   background: white;
   border: 2px solid rgb(20, 160, 197);
   color: black;
+  font-size: 1em;
+  font-family: sans-serif;
+  position: absolute;
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+}
+
+
+.resize-drag {
+  background: white;
+  color: black;
+  font-size: 1em;
+  font-family: sans-serif;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 0;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+}
+
+.drop-active {
+  opacity: 1;
+}
+.can-drop {
+  opacity: 1;
 }

@@ -139,21 +139,3 @@ The drag and resize is temporary and is currently not stored on the flux State
   }
 }
 </script>
-
-<style>
-.resize-dragNote {
-  background: white;
-  border: 2px solid rgb(20, 160, 197);
-  color: black;
-  font-size: 1em;
-  font-family: sans-serif;
-  position: absolute;
-  z-index: 0;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-
-  /* This makes things *much* easier */
-  box-sizing: border-box;
-}
-</style>

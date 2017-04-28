@@ -185,25 +185,3 @@ The drag and resize is temporary and is currently not stored on the flux State
   }
 }
 </script>
-
-<style>
-.resize-drag {
-  background: white;
-  color: black;
-  font-size: 1em;
-  font-family: sans-serif;
-  border-radius: 8px;
-  position: absolute;
-  z-index: 0;
-
-  /* This makes things *much* easier */
-  box-sizing: border-box;
-}
-
-.drop-active {
-  opacity: 1;
-}
-.can-drop {
-  opacity: 1;
-}
-</style>

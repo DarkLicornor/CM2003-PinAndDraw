@@ -1,20 +1,42 @@
-.account {
+
+.miniBoard img {
+  width: 100%;
+  margin: auto;
+}
+.myBoards {
 	width: 70%;
 	margin: auto;
 	text-align: center;
   margin-top: 3em;
 }
 
-.account .button {
+.myBoards .createButton {
+    padding: 1em;
+    border: none;
+    background: #14a0c5;
+    color: white;
+    font-family: Panama;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.myBoards .createButton:hover {
+	background-color: #08627a;
+}
+
+.myBoards .button {
 	background-color: rgb(20, 160, 197);
 	padding: 1em;
 	cursor: pointer;
 }
 
-.account .button:hover {
+.myBoards .button:hover {
 	background-color: #08627a;
 }
-.account h2 {
+
+.myBoards h2 {
   padding: 1em;
 	margin: 1em;
 }
@@ -31,28 +53,11 @@
 	height: 20em;
 	background-color: rgb(20, 160, 197);
 	cursor: pointer;
+  overflow: hidden;
+  color: white;
 }
 
 .miniBoard:hover {
 	background-color: #fff133;
+  color: black;
 }
-
-
- .accountLinks {
-	 display: flex;
-	 flex-direction: row;
-	 align-items: center;
-	 justify-content: space-around;
-	 width: 20%;
-	 margin: auto;
- }
-
- .buttonLink {
-	 margin: 1em;
-	 background: white;
-	 cursor: pointer;
- }
-
- .linkAccountImage {
-	 width: 6em;
- }
