@@ -68,6 +68,8 @@ const FirebaseAuth = {
         parameters.context.getFirebaseDB.ref().update(updates)
     }).catch(function(error) {
       console.log('ERROR', error.message)
+      parameters.context.providerError = error.message
+      
     });
   },
   //Unlink an API from the account
