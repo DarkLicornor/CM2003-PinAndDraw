@@ -23,6 +23,12 @@ The drag and resize is temporary and is currently not stored on the flux State
 
     props: ['pinid', 'title', 'x', 'y', 'img', 'width', 'height'],
 
+    methods: {
+      ...mapActions([
+        'deletePin'
+      ])
+    },
+
     computed: {
       coordinates() {
         return "transform: translate("+ this.x +"px, "+ this.y +"px);"
@@ -161,9 +167,7 @@ The drag and resize is temporary and is currently not stored on the flux State
       ondrop: function (event) {
         console.log("dropped")
         let pinid = event.relatedTarget.getAttribute('data-pinid')
-        console.log(context.currentBoard)
         context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/pins/"+pinid).remove()
-        event.relatedTarget.textContent = 'Dropped';
       },
       ondropdeactivate: function (event) {
         // remove active dropzone feedback
@@ -190,7 +194,7 @@ The drag and resize is temporary and is currently not stored on the flux State
 }
 
 .drop-active {
-  opacity: 0.2;
+  opacity: 1;
 }
 .can-drop {
   opacity: 0.5;

@@ -106,10 +106,12 @@
     },
     methods: {
       ...mapActions([
-        'setCurrentBoard'
+        'setCurrentBoardRef'
       ]),
       showBoard: function(board) {
-        this.setCurrentBoard(board)
+        console.log("Board key", board[".key"])
+        console.log("firebaseref", this.getFirebaseDB.ref(board[".key"]))
+        this.setCurrentBoardRef(this.getFirebaseDB.ref("/boards/"+board[".key"]))
         this.$router.push('/board')
       },
       createBoard: function() {
