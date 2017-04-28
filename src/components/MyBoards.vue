@@ -119,9 +119,7 @@
         let newBoardKey = this.getFirebaseDB.ref().child('boards/').push().key;
         updates['boards/' + newBoardKey] = {title: 'Untitled board'}
         this.getFirebaseDB.ref().update(updates)
-        this.getFirebaseDB.ref('boards/'+newBoardKey).on('value', (snap) => {
-          this.showBoard(snap.val())
-        })
+        this.router.push('/myboards')
       },
       firstPinImage: function(board) {
 
