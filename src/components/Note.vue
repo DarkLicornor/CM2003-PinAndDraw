@@ -1,19 +1,11 @@
 <!--
-Component displaying one picture, and allowing to drag and resize it
-The drag and resize is temporary and is currently not stored on the flux State
- -->
+Component displaying one text note, and allowing to drag and resize it
+-->
 
 <template>
-<!-- <img :src="img" class="resize-drag" :style="coordinates"/> -->
-  <div class="resize-dragNote" :style="style" :data-x="x" :data-y="y" :data-noteid="noteid" :width="width" :height="height">
+<div class="resize-dragNote element" :style="style" :data-x="x" :data-y="y" :data-noteid="noteid" :width="width" :height="height">
     <p>{{text}}</p>
   </div>
-
-  <!-- SVG is not used anymore, but might be used again
-  <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="noteid" ref="notesvg">
-    <rect x="0" y="0" width="100%" height="100%" rx="3" ry="3"/>
-    <image x="0" y="0" width="100%" height="100%" :xlink:href="img"/>
-  </svg> -->
 </template>
 
 <script>
@@ -59,11 +51,6 @@ The drag and resize is temporary and is currently not stored on the flux State
           // call this function on every dragend event
           onend: function (event) {
             var textEl = event.target.querySelector('p');
-
-            // textEl && (textEl.textContent =
-            //   'moved a distance of '
-            //   + (Math.sqrt(event.dx * event.dx +
-            //                event.dy * event.dy)|0) + 'px');
           }
         })
         .resizable({
@@ -71,6 +58,7 @@ The drag and resize is temporary and is currently not stored on the flux State
           edges: { left: true, right: true, bottom: true, top: true }
         })
         .on('resizemove', function (event) {
+          //When resizing
           var target = event.target,
               x = (parseFloat(target.getAttribute('data-x')) || 0),
               y = (parseFloat(target.getAttribute('data-y')) || 0);
@@ -88,13 +76,11 @@ The drag and resize is temporary and is currently not stored on the flux State
 
           target.setAttribute('data-x', x);
           target.setAttribute('data-y', y);
-          // target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
 
-
-          // update the coordinates on firebase (in case top left corner used)
           let noteid = target.getAttribute('data-noteid')
           if(noteid !== null && noteid !== undefined) {
             let updates = {}
+            // update the coordinates on firebase (in case top left corner used)
             updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/x/'] = x
             updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/y/'] = y
 
@@ -107,16 +93,10 @@ The drag and resize is temporary and is currently not stored on the flux State
         });
 
     function dragMoveListener (event) {
-        //if(moved){
-          var target = event.target,
-          // keep the dragged position in the data-x/data-y attributes
-          x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-          y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-        // } else {
-        //   var target = event.target,
-        //   x = startX,
-        //   y = startY;
-        // }
+      var target = event.target,
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
       // translate the element
       target.style.webkitTransform =

@@ -37,6 +37,7 @@ export default {
 				context.$router.push('/signIn')
 			})
 			.catch(function(err) {
+        //The user does not get feedback on this
 				console.log("Cannot logout", err.message)
 			})
 		}

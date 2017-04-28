@@ -1,5 +1,5 @@
 <!--
-Component displaying a board wich contain getPins
+Component displaying a board wich contain pins
  -->
 
 <template>
@@ -59,60 +59,14 @@ Component displaying a board wich contain getPins
 				return this.currentBoard.pins
 			},
     },
-    // created: function() {
-    //   var self = this
-    //   this.interval = setInterval(function () {
-    //     console.log("updated")
-    //     self.pinsList = self.currentBoard.pins
-    //     self.$forceUpdate()
-    //   }, 1000)
-    // },
-    // beforeDestroy: function() {
-    //   clearInterval(this.interval)
-    // },
 		mounted: function() {
+      //Redirect if the user is not logged in
 			if(this.authCurrentUser === null) {
 				this.$router.push('/signIn')
 			}
-			console.log('new list', this.notesList, this.currentBoard.notes)
+      //Initialise the board name
 			this.newBoardTitle = this.currentBoard ? this.currentBoard.title : 'Untitled board'
 			let context = this
-
-			// this.captureScreen = setTimeout(() => {
-	    // 	html2canvas(document.getElementById("boardToCapture"), {
-	    //     onrendered: function (canvas) {
-			// 			let dataURI = canvas.toDataURL()
-			// 			let binary = atob(dataURI.split(',')[1]);
-			// 	    let array = [];
-			// 	    for(let i = 0; i < binary.length; i++) {
-			// 	        array.push(binary.charCodeAt(i));
-			// 	    }
-			// 	    let image = new Blob([new Uint8Array(array)], {type: 'image/png'});
-			//
-			//
-			//         let updates = {}
-			//
-			//           //Upload the image
-			//           let uploadTask = context.getFirebaseStorage.ref().child('screenshot'+context.currentBoard[".key"]+'png').put(image)
-			//
-			//           uploadTask.on('state_changed', function(snapshot){
-			//             //During upload
-			//             context.uploadingFile = true
-			//           }, function(error){
-			//             //On error
-			//             console.log('Upload Error')
-			//           }, function() {
-			//             //Upload successful
-			//             // console.log('Uploaded a file!');
-			//             context.uploadingFile = false
-			// 						// console.log("image", image)
-			// 						updates['boards/' + context.currentBoard[".key"] + '/miniBoard' ] = uploadTask.snapshot.downloadURL
-			// 						// console.log("updates", updates)
-			// 						context.getFirebaseDB.ref().update(updates)
-			//           })
-		  //         },
-	    //     	})
-			// }, 2000)
 		},
 		methods: {
       pinsList() {
@@ -124,11 +78,14 @@ Component displaying a board wich contain getPins
 			]),
 		},
 		watch: {
+      //Get the board title
 			'newBoardTitle': function(val, oldVal) {
 				let updates = {}
 				updates['boards/' + this.currentBoard[".key"] + '/title' ] = val
 				this.getFirebaseDB.ref().update(updates)
 			},
+
+      //Display or hide the popup to add pins depending on the state
 			isAddPopupOpen: function(){
 				if(this.isAddPopupOpen !== null) {
 					this.backgroundStyle = this.isAddPopupOpen == true

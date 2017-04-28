@@ -1,44 +1,30 @@
 import { firebaseAction } from 'vuexfire'
-let dbref = null
 
-//Example from vuexfire
-const setTodosRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
-  // this will unbind any previously bound ref to 'todos'
-  bindFirebaseRef('todos', ref)
-  // you can unbind it easily too
-  unbindFirebaseRef('todos')
-})
-
+//Link the local state with specific firebase database endpoints
 export const setBoardsRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
-  // this will unbind any previously bound ref to 'todos'
   bindFirebaseRef('boards', ref)
 })
-
 export const setDBCurrentUserRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
-  // this will unbind any previously bound ref to 'todos'
   bindFirebaseRef('DBCurrentUser', ref)
 })
-
 export const setCurrentBoardRef = firebaseAction(({ bindFirebaseRef, unbindFirebaseRef }, { ref }) => {
-  // this will unbind any previously bound ref to 'todos'
   bindFirebaseRef('currentBoard', ref)
 })
-//export const setCurrentBoard = ({ commit }, board) => commit('SETCURRENTBOARD', board)
 
-export const increment = ({ commit }) => commit('INCREMENT')
-export const decrement = ({ commit }) => commit('DECREMENT')
-
-export const setFirebaseDB = ({ commit }, ref) => {
-  commit('SETFIREBASEDB', ref)
-}
+//Firebase actions
+export const setFirebaseDB = ({ commit }, ref) => commit('SETFIREBASEDB', ref)
 export const setFirebaseAuth = ({ commit }, ref) => commit('SETFIREBASEAUTH', ref)
 export const setFirebaseStorage = ({ commit }, ref) => commit('SETFIREBASESTORAGE', ref)
 export const setAuthCurrentUser = ({ commit }, user) => commit('SETAUTHCURRENTUSER', user)
 export const setDBCurrentUser = ({ commit }, user) => commit('SETDBCURRENTUSER', user)
+
+//Old code used to store the API tokens locally
 export const storeToken = ({ commit }, tokenData) => commit('STORETOKEN', tokenData)
 
+//Hide or display popup
 export const setAddPopupOpen = ({ commit }, isOpen) => commit('SETADDPOPUPOPEN', isOpen)
 
+//Upload file component
 export const addFileToUploadQueue = ({ commit }, file) => commit('ADDFILETOUPLOADQUEUE', file)
 export const removeFileFromUploadQueue = ({ commit }, file) => commit('REMOVEFILEFROMUPLOADQUEUE', file)
 export const clearUploadQueue = ({ commit }) => commit('CLEARUPLOADQUEUE')

@@ -90,6 +90,7 @@ export default {
     console.log("this", this)
   },
   methods: {
+    //Register a new user
     signup() {
       let context = this
       if(this.pwd == this.pwd1) {

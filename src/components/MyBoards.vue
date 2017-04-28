@@ -42,12 +42,14 @@
       ...mapActions([
         'setCurrentBoardRef'
       ]),
+      //Redirect to a specific board
       showBoard: function(board) {
         console.log("Board key", board[".key"])
         console.log("firebaseref", this.getFirebaseDB.ref(board[".key"]))
         this.setCurrentBoardRef(this.getFirebaseDB.ref("/boards/"+board[".key"]))
         this.$router.push('/board')
       },
+      //Create a new empty board
       createBoard: function() {
         let updates = {}
         let newBoardKey = this.getFirebaseDB.ref().child('boards/').push().key;
@@ -55,8 +57,8 @@
         this.getFirebaseDB.ref().update(updates)
         this.router.push('/myboards')
       },
+      //Display a miniature for the board with the first image in it
       firstPinImage: function(board) {
-
         for(let pin in board.pins) {
           return board.pins[pin].img
         }
@@ -68,6 +70,7 @@
 			}
 		},
 		beforeMount: function() {
+      //If not logged in redirect to /signIn
 			if(this.authCurrentUser === null) {
 					this.$router.push('/signIn')
 			}

@@ -1,3 +1,5 @@
+<!-- Component managing the selection on Pinterest pictures -->
+
 <template>
   <div class="pinterestPopup">
     <div v-if="showPinterest">
@@ -45,6 +47,7 @@
       ])
     },
     watch: {
+      //Retrieve the pinterest token
 			'DBCurrentUser': function() {
 				if(this.DBCurrentUser !== null) {
 					this.showPinterest = this.DBCurrentUser.pinterestToken ? true : false
@@ -56,6 +59,7 @@
 			},
 		},
 		mounted: function() {
+      //Retrieve the pinterest token, !duplicate of Watch
 			if(this.DBCurrentUser !== null) {
 				this.showPinterest = this.DBCurrentUser.pinterestToken ? true : false
         if(this.showPinterest == true) {
@@ -79,6 +83,7 @@
       ...mapActions([
         'setAddPopupOpen'
       ]),
+      //Login and then proceed to display the boards
       login: function() {
         Pinterest.login(this.isLogged)
       },
@@ -90,16 +95,18 @@
       },
       displayBoards: function(nboards){
         this.boards = nboards.data
-        // console.log('BOARDS images2', nboards.data[0].image)
       },
+
+      //Get the pins in the board and display them
       clickedBoard: function(id) {
         Pinterest.getPins(id, this.displayPins)
       },
       displayPins: function(nPins){
         this.pins = nPins
-        // console.log('Pins', nPins, nPins[0].id, nPins[0].image.original)
         this.display = 'pins'
       },
+
+      //Handle a click on a pin, including style transition
       clickedPin: function(index) {
         let element = document.getElementById("popupPin"+index)
         if(this.toAddPins.indexOf(this.pins[index]) > -1) {
@@ -110,13 +117,18 @@
           this.toAddPins.push(this.pins[index])
         }
       },
+
+      //Add the pin on firebase
       addToBoard: function() {
         let updates = {}
         this.toAddPins.map((pin) => {
+          //Process the data for each pin
           let postData = {}
           let newWidth = pin.image.original.width
           let newHeight = pin.image.original.height
           let ratio
+
+          //Adjust the size to fit a 500 square !This will later be added to other upload types
           if(newWidth > 500 || newHeight > 500) {
             if(newHeight < newWidth){
               ratio = 500/newWidth
@@ -137,10 +149,13 @@
             y: 0
           }
 
+          //Get the new pin key and push there
           let newPinKey = this.getFirebaseDB.ref().child('boards/' + this.currentBoard[".key"] + '/pins/').push().key;
           updates['boards/' + this.currentBoard[".key"] + '/pins/'+ newPinKey] = postData
         })
         this.getFirebaseDB.ref().update(updates)
+
+        //Close the popup
         this.setAddPopupOpen(false)
       }
     }

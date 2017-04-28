@@ -68,15 +68,16 @@ export default {
     }
   },
   watch: {
+    //Check is the user is already logged in, if yes redirect him to /account
     authCurrentUser: function() {
-      console.log('currentUser', this.authCurrentUser)
         if(this.authCurrentUser !== null) {
             this.$router.push('/account')
         }
       }
   },
   mounted: function() {
-    console.log('currentUser', this.authCurrentUser)
+    //Check is the user is already logged in, if yes redirect him to /account
+    //Duplicate code
       if(this.authCurrentUser !== null) {
           this.$router.push('/account')
       }

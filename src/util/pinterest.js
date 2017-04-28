@@ -1,4 +1,5 @@
-
+//Manage the Pinterest library
+//---
 var Const = require('./const');
 
 // Initialize once with app id
@@ -16,10 +17,12 @@ var Pinterest = {
     PDK.login({ scope : Const.PIN_SCOPE }, callback);
   },
 
+  //Get the token when already logged in
   getSession: function() {
     return PDK.getSession()
   },
 
+  //Login with a token
   setSession: function(session) {
     PDK.setSession(session)
   },

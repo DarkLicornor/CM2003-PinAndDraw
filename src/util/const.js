@@ -1,6 +1,5 @@
-
 /*
- *  Container for constants
+ *  Container for constants used in API libraries
  */
 var redirect = window.location.origin + window.location.pathname;
 

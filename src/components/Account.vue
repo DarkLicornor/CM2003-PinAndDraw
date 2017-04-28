@@ -73,6 +73,7 @@ and manage his account -->
 			}
 		},
 		watch: {
+			//Check wich APIs are already linked. This is done as a watch as the currentUser is return by an Async firebase method (after mount)
 			'DBCurrentUser': function(){
 				if(this.DBCurrentUser !== null) {
 					this.showGoogle = this.DBCurrentUser.googleToken ? true : false
@@ -82,12 +83,14 @@ and manage his account -->
 				}
 			}
 		},
+		//Redirect to /signIn if not logged in
 		beforeMount: function() {
 			if(this.authCurrentUser === null) {
 					this.$router.push('/signIn')
 			}
 		},
 		mounted: function() {
+			//Same as the watch
 			console.log(this.DBCurrentUser)
 			if(this.DBCurrentUser !== null) {
 				this.showGoogle = this.DBCurrentUser.googleToken ? true : false
@@ -101,6 +104,7 @@ and manage his account -->
 			Pinterest,
 		},
 	  methods: {
+	  	//Methods to link and unlink APIs
 			googleLink() {
 				FirebaseAuth.linkWithProvider({
 					context: this,

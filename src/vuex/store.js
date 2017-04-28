@@ -7,6 +7,7 @@ import { firebaseMutations } from 'vuexfire'
 
 Vue.use(Vuex)
 
+//Initial state
 const defaultState = {
   authCurrentUser: null,
   firebaseDB: null,
@@ -22,6 +23,7 @@ const defaultState = {
 
 const inBrowser = typeof window !== 'undefined'
 
+// the next line is obsolete, used while we had Server-side rendering
 // if in browser, use pre-fetched state injected by SSR
 const state = (inBrowser && window.__INITIAL_STATE__) || defaultState
 

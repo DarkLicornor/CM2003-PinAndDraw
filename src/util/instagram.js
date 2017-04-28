@@ -1,3 +1,5 @@
+//NOT CURRENTLY IMPLEMENTED
+
 let Const = require('./const');
 
 /*

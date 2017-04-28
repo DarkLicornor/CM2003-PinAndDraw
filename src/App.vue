@@ -3,7 +3,6 @@
   <div id="app" style="height:100vh;">
     <HeaderBar></HeaderBar>
      <router-view class="view"></router-view>
-    <!-- <FooterBar></FooterBar> -->
   </div>
 </template>
 
@@ -33,10 +32,12 @@
     },
 
     mounted: function() {
+      //Get if the user is already connected
       let context = this
       context.getFirebaseAuth.onAuthStateChanged(function(user) {
         context.setAuthCurrentUser(user)
         if(user != null) {
+          //If yes, retrieve it's informations
           context.setDBCurrentUserRef(context.getFirebaseDB.ref('/users/' + user.uid))
         }
       })

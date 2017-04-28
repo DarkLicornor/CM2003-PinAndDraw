@@ -1,3 +1,4 @@
+<!-- Component managing the upload dropzone -->
 <template>
   <div class="dropzoneContainer">
     <dropzone
@@ -22,11 +23,9 @@
     methods: {
       'fileAdded': function (file) {
         this.addFileToUploadQueue(file)
-        console.log('A file was successfully added to the list', file)
       },
       'fileRemoved': function (file, error, xhr) {
         this.removeFileFromUploadQueue(file)
-        console.log('A file was successfully removed from the list', file)
       },
       ...mapActions([
         'addFileToUploadQueue',

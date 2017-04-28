@@ -1,3 +1,4 @@
+<!-- Display a rotating spinner for loading times -->
 <template>
 <div class="loaders-spinnerContainer">
   <div class="spinnerContainer">
