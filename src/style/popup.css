@@ -43,6 +43,60 @@
 .popupMenu li:hover {
    border-bottom: 2px solid #ff0043 !important;
 }
+
+
+.popupImageProviders {
+  margin: 2em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  padding: 2em 0 2em 0;
+  width: 80%;
+}
+
+.popupImageProviders .notAvailable {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    width: 5em;
+}
+
+.dropzoneContainer {
+  width: 100%;
+}
+
+.dropzone {
+  border: none!important;
+}
+
+
+.popupAddImageUrl {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  margin: 2em;
+  width: 80%;
+}
+
+.popupDragAndDrop {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
+  align-items: center;
+  margin: 2em;
+  width: 80%;
+}
+
 .popupImage {
   padding: 2em;
   display: flex;

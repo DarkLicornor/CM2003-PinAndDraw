@@ -12,8 +12,11 @@ Component displaying a board wich contain getPins
 			<BoardMenu />
   	</div>
   	<div id="boardToCapture" class="resize-container">
-			<p v-if="pinsList == undefined"> Click on "+" to add your first pin, and on your board name to rename it</p>
-			<Pin v-else-if="pinsList !== null" v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
+			<p v-if="pinsList == undefined && notesList == undefined"> Click on "+" to add your first pin, and on your board name to rename it</p>
+			<div v-else-if="pinsList !== null || notesList !== null">
+				<Pin v-if="pinsList !== null" v-for="(pin, index) in pinsList" :pinid="index" :title="pin.title" :x="pin.x" :y="pin.y" :img="pin.img" :height="pin.height" :width="pin.width"></Pin>
+				<Note v-if="notesList !== null" v-for="(note, index) in notesList" :noteid="index" :title="note.title" :x="note.x" :y="note.y" :text="note.text" :height="note.height" :width="note.width"></Note>
+			</div>
 			<Spinner v-else />
     </div>
   </div>
@@ -22,6 +25,7 @@ Component displaying a board wich contain getPins
 <script>
   import { mapGetters, mapActions, mapState } from 'vuex'
 	import Pin from './Pin'
+	import Note from './Note'
 	import BoardMenu from './BoardMenu'
   import Popup from './Popup'
 	import Spinner from './Spinner'
@@ -29,10 +33,6 @@ Component displaying a board wich contain getPins
 
 	export default {
     computed: {
-      pinsList() {
-				console.log("pins", this.currentBoard.pins)
-        return this.currentBoard.pins
-      },
       ...mapGetters([
 				'authCurrentUser',
         'isAddPopupOpen',
@@ -41,13 +41,21 @@ Component displaying a board wich contain getPins
 				'getFirebaseStorage',
         'getState',
 				'currentBoard'
-      ])
+      ]),
+			notesList() {
+				console.log("notes", this.currentBoard.notes)
+				return this.currentBoard.notes
+			},
+			pinsList() {
+				console.log("pins ???", this.currentBoard.pins)
+				return this.currentBoard.pins
+			},
     },
 		mounted: function() {
-			console.log('currentBoard', this)
 			if(this.authCurrentUser === null) {
 				this.$router.push('/signIn')
 			}
+			console.log('new list', this.notesList, this.currentBoard.notes)
 			this.newBoardTitle = this.currentBoard ? this.currentBoard.title : 'Untitled board'
 			let context = this
 
@@ -96,7 +104,6 @@ Component displaying a board wich contain getPins
 			'newBoardTitle': function(val, oldVal) {
 				let updates = {}
 				updates['boards/' + this.currentBoard[".key"] + '/title' ] = val
-				console.log("updates", updates)
 				this.getFirebaseDB.ref().update(updates)
 			},
 			isAddPopupOpen: function(){
@@ -119,6 +126,7 @@ Component displaying a board wich contain getPins
 		},
     components: {
       Pin,
+			Note,
 			Popup,
 			BoardMenu,
 			Spinner,

@@ -124,7 +124,6 @@
       firstPinImage: function(board) {
 
         for(let pin in board.pins) {
-          console.log('img', board, pin, board.pins[pin].img)
           return board.pins[pin].img
         }
       },

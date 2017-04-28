@@ -5,10 +5,12 @@ The drag and resize is temporary and is currently not stored on the flux State
 
 <template>
 <!-- <img :src="img" class="resize-drag" :style="coordinates"/> -->
-  <img :src="img" class="resize-drag" :style="style" :data-x="x" :data-y="y" :data-pinid="pinid" :width="width" :height="height"/>
+  <div class="resize-dragNote" :style="style" :data-x="x" :data-y="y" :data-noteid="noteid" :width="width" :height="height">
+    <p>{{text}}</p>
+  </div>
 
   <!-- SVG is not used anymore, but might be used again
-  <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="pinid" ref="pinsvg">
+  <svg :x="x" :y="y" :width="cWidth" :height="cHeight" :id="noteid" ref="notesvg">
     <rect x="0" y="0" width="100%" height="100%" rx="3" ry="3"/>
     <image x="0" y="0" width="100%" height="100%" :xlink:href="img"/>
   </svg> -->
@@ -21,7 +23,7 @@ The drag and resize is temporary and is currently not stored on the flux State
   export default {
     components: { interact },
 
-    props: ['pinid', 'title', 'x', 'y', 'img', 'width', 'height'],
+    props: ['noteid', 'title', 'x', 'y', 'text', 'width', 'height'],
 
     computed: {
       coordinates() {
@@ -39,7 +41,7 @@ The drag and resize is temporary and is currently not stored on the flux State
       let context = this
 
       //Add the "interact.js" listenners for drag and resize events.
-      interact('.resize-drag')
+      interact('.resize-dragNote')
         .draggable({
           // enable inertial throwing
           inertia: true,
@@ -65,7 +67,7 @@ The drag and resize is temporary and is currently not stored on the flux State
           }
         })
         .resizable({
-          preserveAspectRatio: true,
+          preserveAspectRatio: false,
           edges: { left: true, right: true, bottom: true, top: true }
         })
         .on('resizemove', function (event) {
@@ -86,22 +88,22 @@ The drag and resize is temporary and is currently not stored on the flux State
 
           target.setAttribute('data-x', x);
           target.setAttribute('data-y', y);
-          //target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+          // target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
 
 
           // update the coordinates on firebase (in case top left corner used)
-          let pinid = target.getAttribute('data-pinid')
-          if(pinid !== null && pinid !== undefined) {
-
+          let noteid = target.getAttribute('data-noteid')
+          if(noteid !== null && noteid !== undefined) {
             let updates = {}
-            updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/x/'] = x
-            updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/y/'] = y
+            updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/x/'] = x
+            updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/y/'] = y
 
             // update the resize on firebase
-            updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/width/'] = event.rect.width
-            updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/height/'] = event.rect.height
+            updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/width/'] = event.rect.width
+            updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/height/'] = event.rect.height
             context.getFirebaseDB.ref().update(updates)
           }
+
         });
 
     function dragMoveListener (event) {
@@ -126,12 +128,11 @@ The drag and resize is temporary and is currently not stored on the flux State
       target.setAttribute('data-y', y);
 
       // update the coordinates on firebase
-      let pinid = target.getAttribute('data-pinid')
-      if(pinid !== null && pinid !== undefined) {
-
+      let noteid = target.getAttribute('data-noteid')
+      if(noteid !== null && noteid !== undefined) {
         let updates = {}
-        updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/x/'] = x
-        updates['boards/' + context.currentBoard[".key"] + '/pins/'+pinid+'/y/'] = y
+        updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/x/'] = x
+        updates['boards/' + context.currentBoard[".key"] + '/notes/'+noteid+'/y/'] = y
         context.getFirebaseDB.ref().update(updates)
       }
     }
@@ -140,14 +141,17 @@ The drag and resize is temporary and is currently not stored on the flux State
 </script>
 
 <style>
-.resize-drag {
+.resize-dragNote {
   background: white;
+  border: 2px solid rgb(20, 160, 197);
   color: black;
   font-size: 1em;
   font-family: sans-serif;
-  border-radius: 8px;
   position: absolute;
   z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 
   /* This makes things *much* easier */
   box-sizing: border-box;

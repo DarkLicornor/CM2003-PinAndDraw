@@ -37,69 +37,15 @@
       </div>
       <div class="popupText" v-if="text">
         <div :style=textAreaDivStyle class="foo box">
-           <textarea :style=textAreaStyle class="inputText"
+           <textarea :style=textAreaStyle class="inputText" v-model="newText"
              type="text"
              placeholder="Your text" />
          </div>
-         <button>Add to board</button>
+         <button @click="uploadText">Add text</button>
        </div>
     </div>
   </div>
 </template>
-
-<style>
-.popupImageProviders {
-  margin: 2em;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  align-items: center;
-  padding: 2em 0 2em 0;
-  width: 80%;
-}
-
-.popupImageProviders .notAvailable {
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-    width: 5em;
-}
-
-.dropzoneContainer {
-  width: 100%;
-}
-
-.dropzone {
-  border: none!important;
-}
-
-
-.popupAddImageUrl {
-  display: flex;
-  flex-direction: column;
-  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  align-items: center;
-  margin: 2em;
-  width: 80%;
-}
-
-.popupDragAndDrop {
-  display: flex;
-  flex-direction: column;
-  -webkit-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  -moz-box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  box-shadow: 0px 0px 48px -13px rgba(120,120,120,0.3);
-  align-items: center;
-  margin: 2em;
-  width: 80%;
-}
-</style>
 
 <script>
   import DropZone from './DropZone'
@@ -178,6 +124,25 @@
         this.imageSelected = 'border-bottom: 2px solid #ff0043 !important;'
         this.textSelected = ''
       },
+      uploadText() {
+        if(this.newText !== "") {
+          let newNoteKey = this.getFirebaseDB.ref().child('boards/' + this.currentBoard[".key"] + '/notes').push().key
+          let updates = {}
+          updates['boards/' + this.currentBoard[".key"] + '/notes/'+ newNoteKey] = {
+            height: 500,
+            width: 200,
+            text: this.newText,
+            x: 0,
+            y: 0
+          }
+          console.log("newText", updates)
+
+          this.getFirebaseDB.ref().update(updates)
+          this.setAddPopupOpen(false)
+          
+
+        }
+      },
       upload() {
         console.log(this.uploadQueue)
         let context = this
@@ -246,6 +211,7 @@
     },
     data: function() {
       return {
+        newText: "",
         imageURL: "",
         uploadingFile: false,
         image: true,
