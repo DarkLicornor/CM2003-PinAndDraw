@@ -174,6 +174,7 @@ The drag and resize is temporary and is currently not stored on the flux State
         console.log("dropped")
         let pinid = event.relatedTarget.getAttribute('data-pinid')
         context.getFirebaseDB.ref("/boards/"+context.currentBoard[".key"]+"/pins/"+pinid).remove()
+        event.relatedTarget.classList.remove('can-drop');
       },
       ondropdeactivate: function (event) {
         // remove active dropzone feedback
@@ -203,6 +204,6 @@ The drag and resize is temporary and is currently not stored on the flux State
   opacity: 1;
 }
 .can-drop {
-  opacity: 0.5;
+  opacity: 1;
 }
 </style>
