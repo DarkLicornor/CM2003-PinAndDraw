@@ -3,10 +3,9 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var toHttps = require('express-to-https').basic
+var httpsRedirect = require('express-https-redirect');
 
-
-app.use(toHttps)
+app.use('/', httpsRedirect());
 app.use(express.static(__dirname + '/dist'));
 
 app.get('*', function(req, res) {

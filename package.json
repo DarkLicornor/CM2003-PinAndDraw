@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "express-to-https": "^1.0.3",
+    "express-https-redirect": "^1.0.0",
     "firebase": "^3.7.2",
     "html2canvas": "^0.5.0-beta4",
     "interact.js": "^1.2.8",
