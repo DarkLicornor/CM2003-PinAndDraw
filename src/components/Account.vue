@@ -22,6 +22,7 @@ and manage his account -->
 						</a>
 					</div>
 				</div>
+				<p>{{providerError}} </p>
 				<div v-if="showGoogle || showFacebook || showTwitter || showPinterest">
 					<p> Unlink your account from : </p>
 					<div class="accountLinks">
@@ -70,6 +71,7 @@ and manage his account -->
 				showFacebook: null,
 				showTwitter: null,
 				showPinterest: null,
+				providerError: null,
 			}
 		},
 		watch: {

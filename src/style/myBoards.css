@@ -61,3 +61,31 @@
 	background-color: #fff133;
   color: black;
 }
+
+.miniBoardHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.miniBoardHeader p {
+  text-align: center;
+  padding: 0.5em;
+}
+
+.miniBoard:hover img {
+  visibility: visible;
+}
+.miniBoardHeader img {
+  width: 2em;
+  display: block;
+  margin-right: 1.1em;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
+  visibility: hidden;
+}
+
+.miniBoardHeader img:hover {
+  width: 2.2em;
+}
