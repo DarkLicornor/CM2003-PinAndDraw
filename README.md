@@ -4,20 +4,11 @@
 
 > Pin all the mockups, wireframe and color-palettes you need for your (Web-)application
 
+> Pin the cooking recipes you need, as well as pictures of any cakes, to help you create YOUR cake.
+
 > All of that in an intuitive page, with a learning curve as low as possible
 
 Production website : https://pinanddraw.azurewebsites.net/board
-
-You can currently :
-- Signin / Signup thanks to firebase
-- Adjust image size and move them thanks to interact.js (Drag by clicking anywhere, resize by click on bottom-right corner)
-
-Ongoing :
-- Add image from pinterest
-
-TODO :
-- Add image from facebook / Instagram
-- Change image display method to SVG?
 
 ## Build Setup
 
